@@ -1,7 +1,9 @@
 package com.mionix.newsapp.ui.Popular.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +16,9 @@ import kotlinx.android.synthetic.main.item_popular_news.view.*
 import kotlinx.android.synthetic.main.layout_toolbar_view.view.*
 
 class PopularNewsListAdapter(private var newsList:List<Articles>): RecyclerView.Adapter<PopularNewsListAdapter.PopularNewList>() {
-    var onItemClick: (() -> Unit)? = null
+    var onItemLongClick: ((description:String,content:String,url:String) -> Unit)? = null
+    var onItemTouchClick: ((view:View , motionEvent:MotionEvent) -> Unit)? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -35,8 +39,9 @@ class PopularNewsListAdapter(private var newsList:List<Articles>): RecyclerView.
         holder.onBind(newsList[position])
     }
     inner class PopularNewList(itemView :View): RecyclerView.ViewHolder(itemView){
-        @SuppressLint("SetTextI18n")
+        @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
         fun onBind(data : Articles){
+            //Load image to image view
             Glide.with(itemView.context)
                 .load(data.urlToImage)
                 .centerCrop()
@@ -44,8 +49,13 @@ class PopularNewsListAdapter(private var newsList:List<Articles>): RecyclerView.
                 .into(itemView.ivItemPopularNews)
             itemView.tvItemTitlePopularNews.text = data.title
             itemView.tvItemSourceAndTimePopularNews.text = "${data.publishedAt} | ${data.source.name}"
-            itemView.setOnClickListener {
-                onItemClick?.invoke()
+            itemView.setOnLongClickListener {
+                onItemLongClick?.invoke(data.description ?: "", data.content ?: "",data.urlToImage?:"")
+                return@setOnLongClickListener true
+            }
+            itemView.setOnTouchListener { view, motionEvent ->
+                onItemTouchClick?.invoke(view,motionEvent)
+                return@setOnTouchListener false
             }
         }
     }

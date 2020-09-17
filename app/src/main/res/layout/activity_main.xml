@@ -49,5 +49,8 @@
         android:id="@+id/nv">
 
     </com.google.android.material.navigation.NavigationView>
-
+    <io.alterac.blurkit.BlurLayout
+        android:id="@+id/blurLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -5,12 +5,48 @@
     android:background="@drawable/background_fragment_dialog_description"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlFragmentDialog">
-    <TextView
+    <androidx.cardview.widget.CardView
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@color/white"
-        android:id="@+id/tvFragmentDialogShortDescription"
-        android:layout_width="300dp"
-        android:layout_height="300dp"/>
+        android:layout_width="400dp"
+        app:cardCornerRadius="15dp"
+        android:background="@drawable/background_fragment_dialog_description"
+        android:layout_height="400dp">
+        <LinearLayout
+            android:background="@color/dark"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp">
+                <ImageView
+                    android:id="@+id/ivFragmentDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"/>
+                <View
+                    android:background="@drawable/background_gradian"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvDescriptionFragmentDialog"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:padding="5dp"
+                android:id="@+id/tvContentFragmentDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
 
 </RelativeLayout>
