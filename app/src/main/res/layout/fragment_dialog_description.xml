@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_fragment_dialog_description"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlFragmentDialog">
+    <androidx.cardview.widget.CardView
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/width_and_height_400dp"
+        app:cardCornerRadius="15dp"
+        android:background="@drawable/background_fragment_dialog_description"
+        android:layout_height="@dimen/width_and_height_400dp">
+        <LinearLayout
+            android:background="@color/dark"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/img_height_130dp">
+                <ImageView
+                    android:id="@+id/ivFragmentDialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/img_height_125dp"/>
+                <View
+                    android:background="@drawable/background_gradian"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="@dimen/view_gradient_height"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvDescriptionFragmentDialog"
+                android:layout_width="wrap_content"
+                android:padding="@dimen/padding_10dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_15sp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textColor="@color/white"
+                android:padding="@dimen/padding_5dp"
+                android:id="@+id/tvContentFragmentDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>
