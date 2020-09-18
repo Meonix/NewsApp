@@ -26,12 +26,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             custom:tabTextAppearance="@style/TextAppearance.Text.Bold"
-            custom:tabSelectedTextColor="@color/colorPrimary"
+            custom:tabSelectedTextColor="@color/white"
             custom:tabTextColor="@color/dark"
             custom:tabIndicatorHeight="4dp"
-            android:background="@color/white"
+            android:background="@color/blur"
             custom:tabGravity="fill"
-            custom:tabPadding="@dimen/dimen_padding_10dp"
+            custom:tabPadding="@dimen/padding_10dp"
             custom:tabMode="scrollable"
             />
         <androidx.viewpager.widget.ViewPager

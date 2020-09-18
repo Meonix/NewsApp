@@ -7,6 +7,6 @@
     <color name="white">#FFFFFF</color>
     <color name="dark">#000000</color>
     <color name="transparent">#80000000</color>
-    <color name="color_purple">#4C087C</color>
+    <color name="purple">#4C087C</color>
 
 </resources>

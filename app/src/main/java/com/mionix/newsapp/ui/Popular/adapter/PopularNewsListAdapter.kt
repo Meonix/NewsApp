@@ -15,7 +15,7 @@ import com.mionix.newsapp.ui.Popular.DescriptionDiaLogFragment
 import kotlinx.android.synthetic.main.item_popular_news.view.*
 import kotlinx.android.synthetic.main.layout_toolbar_view.view.*
 
-class PopularNewsListAdapter(private var newsList:List<Articles>): RecyclerView.Adapter<PopularNewsListAdapter.PopularNewList>() {
+class PopularNewsListAdapter(private var newsList:MutableList<Articles>): RecyclerView.Adapter<PopularNewsListAdapter.PopularNewList>() {
     var onItemLongClick: ((description:String,content:String,url:String) -> Unit)? = null
     var onItemTouchClick: ((view:View , motionEvent:MotionEvent) -> Unit)? = null
 
@@ -32,7 +32,7 @@ class PopularNewsListAdapter(private var newsList:List<Articles>): RecyclerView.
         return newsList.size
     }
     fun updateData(newsList:List<Articles>){
-        this.newsList = newsList
+        this.newsList.addAll(newsList)
         notifyDataSetChanged()
     }
     override fun onBindViewHolder(holder: PopularNewsListAdapter.PopularNewList, position: Int) {

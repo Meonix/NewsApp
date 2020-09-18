@@ -11,6 +11,7 @@ import com.mionix.newsapp.repo.PopularNewsRepo
 
 class PopularNewsViewModel(private val mListPopularNews: PopularNewsRepo): BaseViewModel() {
     private val _getListPopularNews = MutableLiveData<ListPopularNews>()
+    var isLoading = true
     val getListPopularNews: LiveData<ListPopularNews> get() = _getListPopularNews
     fun getListPopularNews(page: Int) = executeUseCase {
         mListPopularNews.getPoppularNews(page)
