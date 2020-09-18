@@ -13,15 +13,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/dimen_margin_10dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_weight="1"
                 android:id="@+id/ivLeft"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="-5dp"
+                android:layout_width="@dimen/dimen_width_or_height_20dp"
+                android:layout_height="@dimen/dimen_width_or_height_20dp"
+                android:layout_marginTop="@dimen/dimen_margin_negative_5"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_open_menu"
                 />
@@ -29,15 +29,15 @@
             <ImageView
                 android:layout_weight="8"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/dimen_40dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginEnd="38dp"/>
+                android:layout_marginEnd="@dimen/dimen_40dp"/>
             <ImageView
                 android:layout_weight="1"
 
                 android:id="@+id/ivRight"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="@dimen/dimen_26dp"
+                android:layout_height="@dimen/dimen_26dp"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_search" />
         </LinearLayout>

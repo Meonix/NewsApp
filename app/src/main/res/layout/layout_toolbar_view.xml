@@ -22,7 +22,7 @@
             android:id="@+id/rlActionLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="12dp"
+            android:padding="@dimen/dimen_padding_10dp"
             android:clickable="true"
             android:focusable="true">
 
@@ -52,10 +52,8 @@
             android:textColor="#000000"
             android:maxLines="1"
             android:ellipsize="end"
-            android:textSize="15dp"
-            tools:text="Title"
-            android:layout_toRightOf="@id/rlActionLeft"
-            android:layout_toLeftOf="@id/ivActionRight" />
+            android:textSize="@dimen/dimen_text_size_15sp"
+            tools:text="Title" />
 
         <ImageView
             android:id="@+id/ivActionRight"
@@ -66,8 +64,7 @@
             app:srcCompat="@drawable/ic_close"
             android:clickable="true"
             android:focusable="true"
-            tools:ignore="VectorDrawableCompat"
-            android:layout_alignParentRight="true" />
+            tools:ignore="VectorDrawableCompat" />
 
     </RelativeLayout>
 

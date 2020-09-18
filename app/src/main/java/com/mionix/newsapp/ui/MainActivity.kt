@@ -1,20 +1,18 @@
-package com.mionix.newsapp
+package com.mionix.newsapp.ui
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.mionix.newsapp.R
 import com.mionix.newsapp.adapter.MainHomeViewPagerAdapter
-import com.mionix.newsapp.viewmodel.ActivityViewModel
+import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_dialog_description.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +24,14 @@ class MainActivity : AppCompatActivity() {
         initView()
         initActionOnClick()
     }
+    companion object{
+        const val ALPHA_COLOR = 0.9f
+        const val VIEW_GONE = View.GONE
+        const val VIEW_VISIBLE = View.VISIBLE
+        const val NAME_OF_TAB_POPULAR = "Popular"
+        @SuppressLint("RtlHardcoded")
+        const val GRAVITY_LEFT = Gravity.LEFT
+    }
     override fun onStart() {
         super.onStart()
         //set Blur
@@ -34,8 +40,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBlurForFirstTime() {
         blurLayout.startBlur()
-        blurLayout.alpha = 0.9f
-        blurLayout.visibility = View.GONE
+        blurLayout.alpha = ALPHA_COLOR
+        blurLayout.visibility = VIEW_GONE
     }
 
     override fun onStop() {
@@ -43,14 +49,12 @@ class MainActivity : AppCompatActivity() {
         //set Blur
         blurLayout.pauseBlur()
     }
-    @SuppressLint("RtlHardcoded")
     private fun initActionOnClick() {
         toolbar.ivLeft.setOnClickListener {
-            dl.openDrawer(Gravity.LEFT)
+            dl.openDrawer(GRAVITY_LEFT)
         }
     }
 
-    @SuppressLint("RtlHardcoded")
     private fun initView() {
         initDrawer()
         initToolbar()
@@ -60,20 +64,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        this@MainActivity.let {
-            mActivityViewModel = ViewModelProviders.of(it).get(ActivityViewModel::class.java)
-        }
+        mActivityViewModel = ViewModelProviders.of(this@MainActivity).get(ActivityViewModel::class.java)
         mActivityViewModel.isTouching.observe(this@MainActivity, Observer {
-            it?.let {
                 when(it){
                     true ->{
-                        blurLayout.visibility = View.VISIBLE
+                        blurLayout.visibility = VIEW_VISIBLE
                     }
                     false ->{
-                        blurLayout.visibility = View.GONE
+                        blurLayout.visibility = VIEW_GONE
                     }
                 }
-            }
         })
     }
 
@@ -99,13 +99,16 @@ class MainActivity : AppCompatActivity() {
     private fun initTableLayout() {
         fragmentNames.addAll(
             mutableListOf(
-                "Popular"//, "Register Calendar"
+                NAME_OF_TAB_POPULAR//, "Register Calendar"
             )
         )
     }
 
     private fun initDrawer() {
-        val t = ActionBarDrawerToggle(this@MainActivity,dl, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val t = ActionBarDrawerToggle(this@MainActivity,dl,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
         dl.addDrawerListener(t)
         t.syncState()
     }

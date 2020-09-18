@@ -14,13 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mionix.newsapp.R
 import com.mionix.newsapp.ui.Popular.adapter.PopularNewsListAdapter
-import com.mionix.newsapp.viewmodel.ActivityViewModel
-import com.mionix.newsapp.viewmodel.PopularNewsViewModel
+import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
+import com.mionix.newsapp.ui.viewmodel.PopularNewsViewModel
 
 import kotlinx.android.synthetic.main.fragment_popular.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -84,7 +81,6 @@ class PopularFragment : Fragment() {
         mPopularNewsListAdapter.onItemTouchClick = {view , motionEvent ->
             when (motionEvent.action) {
                 MotionEvent.ACTION_UP -> {
-                    Log.d("DUY", "false")
                     mActivityViewModel.isTouching.postValue(false)
                 }
             }
@@ -95,9 +91,9 @@ class PopularFragment : Fragment() {
         val dialog = DescriptionDiaLogFragment()
         mActivityViewModel.isTouching.postValue(true)
         val args = Bundle()
-        args.putString("description", description)
-        args.putString("content", content)
-        args.putString("url",url)
+        args.putString(DescriptionDiaLogFragment.KEY_DESCRIPTION, description)
+        args.putString(DescriptionDiaLogFragment.KEY_CONTENT, content)
+        args.putString(DescriptionDiaLogFragment.KEY_URL,url)
         dialog.arguments = args
         fragmentManager?.beginTransaction()?.let {ft->
             dialog.show(ft,"Fragment Dialog")

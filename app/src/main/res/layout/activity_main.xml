@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:id="@+id/dl"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             custom:tabIndicatorHeight="4dp"
             android:background="@color/white"
             custom:tabGravity="fill"
-            custom:tabPadding="10dp"
+            custom:tabPadding="@dimen/dimen_padding_10dp"
             custom:tabMode="scrollable"
             />
         <androidx.viewpager.widget.ViewPager

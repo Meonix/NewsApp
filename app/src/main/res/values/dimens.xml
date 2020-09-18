@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_padding_10dp">10dp</dimen>
+    <dimen name="dimen_width_and_height_400dp">400dp</dimen>
+    <dimen name="dimen_img_height_130dp">130dp</dimen>
+    <dimen name="dimen_img_height_125dp">125dp</dimen>
+    <dimen name="dimen_view_gradient_height">30dp</dimen>
+    <dimen name="dimen_text_size_15sp">15sp</dimen>
+    <dimen name="dimen_padding_5dp">5dp</dimen>
+    <dimen name="dimen_margin_10dp">10dp</dimen>
+    <dimen name="dimen_margin_negative_5">-5dp</dimen>
+    <dimen name="dimen_width_or_height_20dp">20dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
+    <dimen name="dimen_26dp">26dp</dimen>
+    <dimen name="dimen_180dp">180dp</dimen>
+    <dimen name="dimen_15dp">15dp</dimen>
+</resources>

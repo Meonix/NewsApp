@@ -1,4 +1,4 @@
-package com.mionix.newsapp.viewmodel
+package com.mionix.newsapp.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

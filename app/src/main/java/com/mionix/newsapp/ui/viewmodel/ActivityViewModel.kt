@@ -1,9 +1,9 @@
-package com.mionix.newsapp.viewmodel
+package com.mionix.newsapp.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 
 class ActivityViewModel : ViewModel(){
-    val isTouching = MutableLiveData<Boolean>()
+    val isTouching = MutableLiveData(false)
 }
