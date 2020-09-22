@@ -1,23 +1,31 @@
 package com.mionix.newsapp.ui
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Rect
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.PopupWindow
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.mionix.newsapp.R
 import com.mionix.newsapp.adapter.MainHomeViewPagerAdapter
+import com.mionix.newsapp.ui.Popular.adapter.SpinnerAdapter
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 
+
 class MainActivity : AppCompatActivity() {
     private var fragmentNames = mutableListOf<String>()
     private var mActivityViewModel = ActivityViewModel()
+    private lateinit var window: PopupWindow
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,8 +37,7 @@ class MainActivity : AppCompatActivity() {
         const val VIEW_GONE = View.GONE
         const val VIEW_VISIBLE = View.VISIBLE
         const val NAME_OF_TAB_POPULAR = "Popular"
-        @SuppressLint("RtlHardcoded")
-        const val GRAVITY_LEFT = Gravity.LEFT
+        val NULL_VIEW_GROUP = null
     }
     override fun onStart() {
         super.onStart()
@@ -49,12 +56,13 @@ class MainActivity : AppCompatActivity() {
         //set Blur
         blurLayout.pauseBlur()
     }
+
+    @SuppressLint("RtlHardcoded")
     private fun initActionOnClick() {
         toolbar.ivLeft.setOnClickListener {
-            dl.openDrawer(GRAVITY_LEFT)
+            dl.openDrawer(Gravity.LEFT)
         }
     }
-
     private fun initView() {
         initDrawer()
         initToolbar()
@@ -62,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         initViewPager()
         initViewModel()
     }
+
 
     private fun initViewModel() {
         mActivityViewModel = ViewModelProviders.of(this@MainActivity).get(ActivityViewModel::class.java)

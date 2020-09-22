@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    >
+    <TextView
+        android:id="@+id/tvSpinner"
+        android:textSize="20sp"
+        tools:text="abcasd"
+        android:textColor="@color/blur"
+        android:padding="@dimen/padding_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

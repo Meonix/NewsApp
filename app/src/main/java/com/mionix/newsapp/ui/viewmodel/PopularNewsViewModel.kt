@@ -13,8 +13,8 @@ class PopularNewsViewModel(private val mListPopularNews: PopularNewsRepo): BaseV
     private val _getListPopularNews = MutableLiveData<ListPopularNews>()
     var isLoading = true
     val getListPopularNews: LiveData<ListPopularNews> get() = _getListPopularNews
-    fun getListPopularNews(page: Int) = executeUseCase {
-        mListPopularNews.getPoppularNews(page)
+    fun getListPopularNews(page: Int,country:String) = executeUseCase {
+        mListPopularNews.getPopularNews(page,country)
             .onLoading {
                 println("Loading $it")
             }

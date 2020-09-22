@@ -31,6 +31,10 @@ class PopularNewsListAdapter(private var newsList:MutableList<Articles>): Recycl
     override fun getItemCount(): Int {
         return newsList.size
     }
+    fun clearData(){
+        this.newsList.clear()
+        notifyDataSetChanged()
+    }
     fun updateData(newsList:List<Articles>){
         this.newsList.addAll(newsList)
         notifyDataSetChanged()
