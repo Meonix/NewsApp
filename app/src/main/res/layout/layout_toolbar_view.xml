@@ -22,7 +22,7 @@
             android:id="@+id/rlActionLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dimen_padding_10dp"
+            android:padding="@dimen/padding_10dp"
             android:clickable="true"
             android:focusable="true">
 
@@ -52,7 +52,7 @@
             android:textColor="#000000"
             android:maxLines="1"
             android:ellipsize="end"
-            android:textSize="@dimen/dimen_text_size_15sp"
+            android:textSize="@dimen/text_size_15sp"
             tools:text="Title" />
 
         <ImageView

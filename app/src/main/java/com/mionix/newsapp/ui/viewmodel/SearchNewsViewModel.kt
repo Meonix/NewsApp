@@ -8,19 +8,20 @@ import com.mionix.newsapp.base.onLoading
 import com.mionix.newsapp.base.onSuccess
 import com.mionix.newsapp.model.ListPopularNews
 import com.mionix.newsapp.repo.PopularNewsRepo
+import com.mionix.newsapp.repo.SearchNewsRepo
 
-class PopularNewsViewModel(private val mListPopularNews: PopularNewsRepo): BaseViewModel() {
-    private val _getListPopularNews = MutableLiveData<ListPopularNews>()
+class SearchNewsViewModel(private val mListSearchNews: SearchNewsRepo) : BaseViewModel() {
+    private val _getListSearchNews = MutableLiveData<ListPopularNews>()
     var isLoading = true
-    val getListPopularNews: LiveData<ListPopularNews> get() = _getListPopularNews
-    fun getListPopularNews(page: Int,country:String) = executeUseCase {
-        mListPopularNews.getPopularNews(page,country)
+    val getListSearchNews: LiveData<ListPopularNews> get() = _getListSearchNews
+    fun getListSearchNews(keyWord: String, page: Int, language: String) = executeUseCase {
+        mListSearchNews.getSearchNews(keyWord, page, language)
             .onLoading {
                 println("Loading $it")
             }
 
             .onSuccess {
-                _getListPopularNews.value = it
+                _getListSearchNews.value = it
             }
 
             .onFailure {

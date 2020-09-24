@@ -9,28 +9,33 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.mionix.newsapp.R
+import com.mionix.newsapp.ui.MainActivity
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.fragment_dialog_description.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class DescriptionDiaLogFragment:DialogFragment() {
+class DescriptionDiaLogFragment : DialogFragment() {
+    private val sharedViewModel: ActivityViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //to set The DialogFragment to full screen
         setStyle(STYLE_NORMAL, R.style.Theme_App_Dialog_FullScreen)
     }
+
     companion object {
         const val KEY_DESCRIPTION = "description"
         const val KEY_CONTENT = "content"
         const val KEY_URL = "url"
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_dialog_description,container,false)
+        return inflater.inflate(R.layout.fragment_dialog_description, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,12 +50,10 @@ class DescriptionDiaLogFragment:DialogFragment() {
         tvContentFragmentDialog.text = mArgs?.getString(KEY_CONTENT)
         ivFragmentDialog
         val url = mArgs?.getString(KEY_URL)
-        if(context!=null){
-            Glide.with(context!!)
-                .load(url)
-                .centerCrop()
-                .into(ivFragmentDialog)
-        }
+        Glide.with(this@DescriptionDiaLogFragment)
+            .load(url)
+            .centerCrop()
+            .into(ivFragmentDialog)
 
         rlFragmentDialog.setOnClickListener {
             this.dismiss()
@@ -58,14 +61,11 @@ class DescriptionDiaLogFragment:DialogFragment() {
     }
 
     private fun initViewModel() {
-        activity?.let {
-            val sharedViewModel = ViewModelProviders.of(it).get(ActivityViewModel::class.java)
-            sharedViewModel.isTouching.observe(viewLifecycleOwner, Observer {
-                    if(!it){
-                        this.dismiss()
-                    }
-            })
-        }
+        sharedViewModel.isTouching.observe(viewLifecycleOwner, Observer {
+            if (!it) {
+                this.dismiss()
+            }
+        })
     }
 
 
