@@ -8,5 +8,6 @@
     <color name="dark">#000000</color>
     <color name="transparent">#80000000</color>
     <color name="purple">#4C087C</color>
+    <color name="light_black">#151515</color>
 
 </resources>

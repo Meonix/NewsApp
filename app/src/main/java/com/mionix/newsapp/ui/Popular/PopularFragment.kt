@@ -22,10 +22,82 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mionix.newsapp.R
+import com.mionix.newsapp.Utils.AppConstants.ARGENTINA
+import com.mionix.newsapp.Utils.AppConstants.AUSTRALIA
+import com.mionix.newsapp.Utils.AppConstants.AUSTRIA
+import com.mionix.newsapp.Utils.AppConstants.BELGIUM
+import com.mionix.newsapp.Utils.AppConstants.BRAZIL
+import com.mionix.newsapp.Utils.AppConstants.BULGARIA
+import com.mionix.newsapp.Utils.AppConstants.CANADA
+import com.mionix.newsapp.Utils.AppConstants.CHINA
+import com.mionix.newsapp.Utils.AppConstants.COLUMBIA
+import com.mionix.newsapp.Utils.AppConstants.CUBA
+import com.mionix.newsapp.Utils.AppConstants.CZECHIA
+import com.mionix.newsapp.Utils.AppConstants.EGYPT
+import com.mionix.newsapp.Utils.AppConstants.FRANCE
+import com.mionix.newsapp.Utils.AppConstants.GERMANY
+import com.mionix.newsapp.Utils.AppConstants.GREECE
+import com.mionix.newsapp.Utils.AppConstants.HONG_KONG
+import com.mionix.newsapp.Utils.AppConstants.HUNGARY
+import com.mionix.newsapp.Utils.AppConstants.INDIA
+import com.mionix.newsapp.Utils.AppConstants.INDONESIA
+import com.mionix.newsapp.Utils.AppConstants.IRELAND
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_ARGENTINA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_AUSTRALIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_AUSTRIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_BELGIUM
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_BRAZIL
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_BULGARIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_CANADA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_CHINA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_COLUMBIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_CUBA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_CZECHIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_EGYPT
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_FRANCE
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_GERMANY
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_GREECE
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_HONG_KONG
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_HUNGARY
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_INDIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_INDONESIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_IRELAND
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_ISRAEL
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_ITALY
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_JAPAN
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_KOREA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_LATVIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_LITHUANIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_MALAYSIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_MEXICO
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_MOROCCO
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_NEW_ZEALAND
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_NIGERIA
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_PHILIPPINES
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_SWITZERLAND
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_UK_OF_GB_AND_NI
+import com.mionix.newsapp.Utils.AppConstants.ISO_3166_1_UNITED_ARAB_EMIRATES
+import com.mionix.newsapp.Utils.AppConstants.ISRAEL
+import com.mionix.newsapp.Utils.AppConstants.ITALY
+import com.mionix.newsapp.Utils.AppConstants.JAPAN
+import com.mionix.newsapp.Utils.AppConstants.KOREA
+import com.mionix.newsapp.Utils.AppConstants.LATVIA
+import com.mionix.newsapp.Utils.AppConstants.LITHUANIA
+import com.mionix.newsapp.Utils.AppConstants.MALAYSIA
+import com.mionix.newsapp.Utils.AppConstants.MEXICO
+import com.mionix.newsapp.Utils.AppConstants.MOROCCO
+import com.mionix.newsapp.Utils.AppConstants.NEW_ZEALAND
+import com.mionix.newsapp.Utils.AppConstants.NIGERIA
+import com.mionix.newsapp.Utils.AppConstants.PHILIPPINES
+import com.mionix.newsapp.Utils.AppConstants.SWITZERLAND
+import com.mionix.newsapp.Utils.AppConstants.TIME_DELAY
+import com.mionix.newsapp.Utils.AppConstants.UK_OF_GB_AND_NI
+import com.mionix.newsapp.Utils.AppConstants.UNITED_ARAB_EMIRATES
 import com.mionix.newsapp.ui.Popular.adapter.PopularNewsListAdapter
 import com.mionix.newsapp.ui.Popular.adapter.SpinnerAdapter
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
 import com.mionix.newsapp.ui.viewmodel.PopularNewsViewModel
+import kotlinx.android.synthetic.main.activity_search.*
 
 import kotlinx.android.synthetic.main.fragment_popular.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,7 +106,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class PopularFragment : Fragment() {
     private val mPopularNews: PopularNewsViewModel by viewModel()
     private var mPopularNewsListAdapter = PopularNewsListAdapter(mutableListOf())
-    private var mActivityViewModel = ActivityViewModel()
+    private val mActivityViewModel: ActivityViewModel by viewModel()
     private lateinit var popularNewsLayoutManager: LinearLayoutManager
 
     private var page = 1
@@ -47,78 +119,7 @@ class PopularFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
-        const val TIME_DELAY: Long = 1200
-        const val ARGENTINA = "Argentina"
-        const val UNITED_ARAB_EMIRATES = "United Arab Emirates"
-        const val AUSTRIA = "Austria"
-        const val AUSTRALIA = "Australia"
-        const val BELGIUM = "Belgium"
-        const val BULGARIA = "Bulgaria"
-        const val BRAZIL = "Brazil"
-        const val CANADA = "Canada"
-        const val SWITZERLAND = "Switzerland"
-        const val CHINA = "China"
-        const val COLUMBIA = "Colombia"
-        const val CUBA = "Cuba"
-        const val CZECHIA = "Czechia"
-        const val GERMANY = "Germany"
-        const val EGYPT = "Egypt"
-        const val FRANCE = "France"
-        const val UK_OF_GB_AND_NI = "United Kingdom of Great Britain and Northern Ireland"
-        const val GREECE = "Greece"
-        const val HONG_KONG = "Hong Kong"
-        const val HUNGARY = "Hungary"
-        const val INDONESIA = "Indonesia"
-        const val IRELAND = "Ireland"
-        const val ISRAEL = "Israel"
-        const val INDIA = "India"
-        const val ITALY = "Italy"
-        const val JAPAN = "Japan"
-        const val KOREA = "Korea"
-        const val LITHUANIA = "Lithuania"
-        const val LATVIA = "Latvia"
-        const val MOROCCO = "Morocco"
-        const val MEXICO = "Mexico"
-        const val MALAYSIA = "Malaysia"
-        const val NIGERIA = "Nigeria"
-        const val NEW_ZEALAND = "New Zealand"
-        const val PHILIPPINES = "Philippines"
 
-        const val ISO_3166_1_ARGENTINA = "ar"
-        const val ISO_3166_1_UNITED_ARAB_EMIRATES = "ae"
-        const val ISO_3166_1_AUSTRIA = "at"
-        const val ISO_3166_1_AUSTRALIA = "au"
-        const val ISO_3166_1_BELGIUM = "be"
-        const val ISO_3166_1_BULGARIA = "bg"
-        const val ISO_3166_1_BRAZIL = "br"
-        const val ISO_3166_1_CANADA = "ca"
-        const val ISO_3166_1_SWITZERLAND = "ch"
-        const val ISO_3166_1_CHINA = "cn"
-        const val ISO_3166_1_COLUMBIA = "co"
-        const val ISO_3166_1_CUBA = "cu"
-        const val ISO_3166_1_CZECHIA = "cz"
-        const val ISO_3166_1_GERMANY = "de"
-        const val ISO_3166_1_EGYPT = "eg"
-        const val ISO_3166_1_FRANCE = "fr"
-        const val ISO_3166_1_UK_OF_GB_AND_NI = "gb"
-        const val ISO_3166_1_GREECE = "gr"
-        const val ISO_3166_1_HONG_KONG = "hk"
-        const val ISO_3166_1_HUNGARY = "hu"
-        const val ISO_3166_1_INDONESIA = "id"
-        const val ISO_3166_1_IRELAND = "ie"
-        const val ISO_3166_1_ISRAEL = "il"
-        const val ISO_3166_1_INDIA = "in"
-        const val ISO_3166_1_ITALY = "it"
-        const val ISO_3166_1_JAPAN = "jp"
-        const val ISO_3166_1_KOREA = "kr"
-        const val ISO_3166_1_LITHUANIA = "lt"
-        const val ISO_3166_1_LATVIA = "lv"
-        const val ISO_3166_1_MOROCCO = "ma"
-        const val ISO_3166_1_MEXICO = "mx"
-        const val ISO_3166_1_MALAYSIA = "my"
-        const val ISO_3166_1_NIGERIA = "ng"
-        const val ISO_3166_1_NEW_ZEALAND = "nz"
-        const val ISO_3166_1_PHILIPPINES = "ph"
     }
 
     override fun onCreateView(
@@ -139,19 +140,132 @@ class PopularFragment : Fragment() {
         initViewModel()
         initSpinner()
         initRecycleView()
+        initSwipeRefresh()
+    }
 
+    private fun initSwipeRefresh() {
+        swipeRefreshPopular.setOnRefreshListener {
+            getDataByCountryOfItemSpinner()
+        }
+    }
+
+    private fun getDataByCountryOfItemSpinner() {
+        when (spMain.selectedItem.toString()) {
+            ARGENTINA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_ARGENTINA)
+            }
+            UNITED_ARAB_EMIRATES -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_UNITED_ARAB_EMIRATES)
+            }
+            AUSTRIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_AUSTRIA)
+            }
+            AUSTRALIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_AUSTRALIA)
+            }
+            BELGIUM -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_BELGIUM)
+            }
+            BULGARIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_BULGARIA)
+            }
+            BRAZIL -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_BRAZIL)
+            }
+            CANADA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_CANADA)
+            }
+            SWITZERLAND -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_SWITZERLAND)
+            }
+            CHINA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_CHINA)
+            }
+            COLUMBIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_COLUMBIA)
+            }
+            CUBA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_CUBA)
+            }
+            CZECHIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_CZECHIA)
+            }
+            GERMANY -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_GERMANY)
+            }
+            EGYPT -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_EGYPT)
+            }
+            FRANCE -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_FRANCE)
+            }
+            UK_OF_GB_AND_NI -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_UK_OF_GB_AND_NI)
+            }
+            GREECE -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_GREECE)
+            }
+            HONG_KONG -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_HONG_KONG)
+            }
+            HUNGARY -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_HUNGARY)
+            }
+            INDONESIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_INDONESIA)
+            }
+            IRELAND -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_IRELAND)
+            }
+            ISRAEL -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_ISRAEL)
+            }
+            INDIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_INDIA)
+            }
+            ITALY -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_ITALY)
+            }
+            JAPAN -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_JAPAN)
+            }
+            KOREA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_KOREA)
+            }
+            LITHUANIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_LITHUANIA)
+            }
+            LATVIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_LATVIA)
+            }
+            MOROCCO -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_MOROCCO)
+            }
+            MEXICO -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_MEXICO)
+            }
+            MALAYSIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_MALAYSIA)
+            }
+            NIGERIA -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_NIGERIA)
+            }
+            NEW_ZEALAND -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_NEW_ZEALAND)
+            }
+            PHILIPPINES -> {
+                getDataByCountryISO_3166_1(ISO_3166_1_PHILIPPINES)
+            }
+        }
     }
 
     private fun initViewModel() {
-        activity?.let {
-            mActivityViewModel = ViewModelProviders.of(it).get(ActivityViewModel::class.java)
-        }
         getNewsListOnCountry()
         mPopularNews.getListPopularNews.observe(viewLifecycleOwner, Observer {
             mPopularNewsListAdapter.updateData(it.articles)
+            swipeRefreshPopular.isRefreshing = false
         })
     }
-
 
 
     private fun initSpinner() {
@@ -177,127 +291,24 @@ class PopularFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                when (spMain.selectedItem.toString()){
-                    ARGENTINA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_ARGENTINA)
-                    }
-                    UNITED_ARAB_EMIRATES ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_UNITED_ARAB_EMIRATES)
-                    }
-                    AUSTRIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_AUSTRIA)
-                    }
-                    AUSTRALIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_AUSTRALIA)
-                    }
-                    BELGIUM ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_BELGIUM)
-                    }
-                    BULGARIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_BULGARIA)
-                    }
-                    BRAZIL ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_BRAZIL)
-                    }
-                    CANADA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_CANADA)
-                    }
-                    SWITZERLAND ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_SWITZERLAND)
-                    }
-                    CHINA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_CHINA)
-                    }
-                    COLUMBIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_COLUMBIA)
-                    }
-                    CUBA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_CUBA)
-                    }
-                    CZECHIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_CZECHIA)
-                    }
-                    GERMANY ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_GERMANY)
-                    }
-                    EGYPT ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_EGYPT)
-                    }
-                    FRANCE ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_FRANCE)
-                    }
-                    UK_OF_GB_AND_NI ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_UK_OF_GB_AND_NI)
-                    }
-                    GREECE ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_GREECE)
-                    }
-                    HONG_KONG ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_HONG_KONG)
-                    }
-                    HUNGARY ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_HUNGARY)
-                    }
-                    INDONESIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_INDONESIA)
-                    }
-                    IRELAND ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_IRELAND)
-                    }
-                    ISRAEL ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_ISRAEL)
-                    }
-                    INDIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_INDIA)
-                    }
-                    ITALY ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_ITALY)
-                    }
-                    JAPAN ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_JAPAN)
-                    }
-                    KOREA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_KOREA)
-                    }
-                    LITHUANIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_LITHUANIA)
-                    }
-                    LATVIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_LATVIA)
-                    }
-                    MOROCCO ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_MOROCCO)
-                    }
-                    MEXICO ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_MEXICO)
-                    }
-                    MALAYSIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_MALAYSIA)
-                    }
-                    NIGERIA ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_NIGERIA)
-                    }
-                    NEW_ZEALAND ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_NEW_ZEALAND)
-                    }
-                    PHILIPPINES ->{
-                        getDataByCountryISO_3166_1(ISO_3166_1_PHILIPPINES)
-                    }
-                }
+                getDataByCountryOfItemSpinner()
             }
+
             override fun onNothingSelected(parentView: AdapterView<*>?) {
 
             }
         }
     }
-    private fun getDataByCountryISO_3166_1(countryISO_3166_1:String){
+
+    private fun getDataByCountryISO_3166_1(countryISO_3166_1: String) {
         mPopularNewsListAdapter.clearData()
         page = 1
         country = countryISO_3166_1
         getNewsListOnCountry()
     }
-    private fun getNewsListOnCountry(){
-        mPopularNews.getListPopularNews(page,country)
+
+    private fun getNewsListOnCountry() {
+        mPopularNews.getListPopularNews(page, country)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -362,9 +373,7 @@ class PopularFragment : Fragment() {
         args.putString(DescriptionDiaLogFragment.KEY_CONTENT, content)
         args.putString(DescriptionDiaLogFragment.KEY_URL, url)
         dialog.arguments = args
-        fragmentManager?.beginTransaction()?.let { ft ->
-            dialog.show(ft, "Fragment Dialog")
-        }
+        dialog.show(parentFragmentManager.beginTransaction(), "Fragment Dialog")
     }
 
 

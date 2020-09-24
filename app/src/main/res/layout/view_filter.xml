@@ -7,7 +7,7 @@
     >
     <TextView
         android:id="@+id/tvSpinner"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size_20sp"
         tools:text="abcasd"
         android:textColor="@color/blur"
         android:padding="@dimen/padding_10dp"

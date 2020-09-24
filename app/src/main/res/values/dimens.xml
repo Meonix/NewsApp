@@ -14,4 +14,7 @@
     <dimen name="size26dp">26dp</dimen>
     <dimen name="size180dp">180dp</dimen>
     <dimen name="size15dp">15dp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="size_50dp">50dp</dimen>
+    <dimen name="size_4dp">4dp</dimen>
 </resources>
