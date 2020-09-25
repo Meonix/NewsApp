@@ -1,7 +1,6 @@
-package com.mionix.newsapp.ui.Popular.adapter
+package com.mionix.newsapp.ui.popular.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -10,10 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mionix.newsapp.R
 import com.mionix.newsapp.model.Articles
-import com.mionix.newsapp.model.ListPopularNews
-import com.mionix.newsapp.ui.Popular.DescriptionDiaLogFragment
 import kotlinx.android.synthetic.main.item_popular_news.view.*
-import kotlinx.android.synthetic.main.layout_toolbar_view.view.*
 
 class PopularNewsListAdapter(private var newsList:MutableList<Articles>): RecyclerView.Adapter<PopularNewsListAdapter.PopularNewList>() {
     var onItemLongClick: ((description:String,content:String,url:String) -> Unit)? = null
@@ -36,8 +32,9 @@ class PopularNewsListAdapter(private var newsList:MutableList<Articles>): Recycl
         notifyDataSetChanged()
     }
     fun updateData(newsList:List<Articles>){
+        val totalItem = itemCount
         this.newsList.addAll(newsList)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(totalItem,newsList.size -1 )
     }
     override fun onBindViewHolder(holder: PopularNewsListAdapter.PopularNewList, position: Int) {
         holder.onBind(newsList[position])

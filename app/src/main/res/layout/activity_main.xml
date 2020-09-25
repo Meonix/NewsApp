@@ -6,7 +6,7 @@
     android:id="@+id/dl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,11 +33,11 @@
                 android:background="@color/blur"
                 custom:tabGravity="fill"
                 custom:tabIndicatorHeight="@dimen/size_4dp"
-                custom:tabMode="scrollable"
+                custom:tabMode="auto"
                 custom:tabPadding="@dimen/padding_10dp"
-                custom:tabSelectedTextColor="@color/white"
+                custom:tabSelectedTextColor="@color/colorAccent"
                 custom:tabTextAppearance="@style/TextAppearance.Text.Bold"
-                custom:tabTextColor="@color/dark" />
+                custom:tabTextColor="@color/white" />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/mPager"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/light_black"
     android:orientation="vertical"
-    tools:context=".ui.Search.SearchActivity">
+    tools:context=".ui.search.SearchActivity">
 
     <include
         android:id="@+id/searchToolbar"

@@ -1,24 +1,17 @@
-package com.mionix.newsapp.ui
+package com.mionix.newsapp.ui.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Rect
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.PopupWindow
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.mionix.newsapp.R
-import com.mionix.newsapp.adapter.MainHomeViewPagerAdapter
-import com.mionix.newsapp.ui.Popular.adapter.SpinnerAdapter
-import com.mionix.newsapp.ui.Search.SearchActivity
+import com.mionix.newsapp.ui.main.adapter.MainHomeViewPagerAdapter
+import com.mionix.newsapp.ui.search.SearchActivity
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
@@ -40,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         const val VIEW_GONE = View.GONE
         const val VIEW_VISIBLE = View.VISIBLE
         const val NAME_OF_TAB_POPULAR = "Popular"
+        const val NAME_OF_TAB_SOURCES = "Sources News"
     }
 
     override fun onStart() {
@@ -50,8 +44,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBlurForFirstTime() {
         blurLayout.startBlur()
-        blurLayout.alpha = ALPHA_COLOR
-        blurLayout.visibility = VIEW_GONE
+        blurLayout.alpha =
+            ALPHA_COLOR
+        blurLayout.visibility =
+            VIEW_GONE
     }
 
     override fun onStop() {
@@ -89,10 +85,12 @@ class MainActivity : AppCompatActivity() {
     private fun makeBlur(it: Boolean) {
         when (it) {
             true -> {
-                blurLayout.visibility = VIEW_VISIBLE
+                blurLayout.visibility =
+                    VIEW_VISIBLE
             }
             false -> {
-                blurLayout.visibility = VIEW_GONE
+                blurLayout.visibility =
+                    VIEW_GONE
             }
         }
     }
@@ -119,7 +117,7 @@ class MainActivity : AppCompatActivity() {
     private fun initTableLayout() {
         fragmentNames.addAll(
             mutableListOf(
-                NAME_OF_TAB_POPULAR//, "Register Calendar"
+                NAME_OF_TAB_POPULAR,NAME_OF_TAB_SOURCES
             )
         )
     }

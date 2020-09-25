@@ -1,4 +1,4 @@
-package com.mionix.newsapp.ui.Search
+package com.mionix.newsapp.ui.search
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,12 +13,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mionix.newsapp.R
-import com.mionix.newsapp.Utils.AppConstants
-import com.mionix.newsapp.ui.MainActivity
-import com.mionix.newsapp.ui.Popular.DescriptionDiaLogFragment
-import com.mionix.newsapp.ui.Popular.PopularFragment
-import com.mionix.newsapp.ui.Popular.adapter.PopularNewsListAdapter
-import com.mionix.newsapp.ui.Popular.adapter.SpinnerAdapter
+import com.mionix.newsapp.utils.AppConstants
+import com.mionix.newsapp.ui.main.MainActivity
+import com.mionix.newsapp.ui.popular.DescriptionDiaLogFragment
+import com.mionix.newsapp.ui.popular.adapter.PopularNewsListAdapter
+import com.mionix.newsapp.ui.popular.adapter.SpinnerAdapter
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
 import com.mionix.newsapp.ui.viewmodel.SearchNewsViewModel
 import kotlinx.android.synthetic.main.activity_search.*

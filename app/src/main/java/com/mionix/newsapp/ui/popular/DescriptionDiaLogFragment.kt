@@ -1,4 +1,4 @@
-package com.mionix.newsapp.ui.Popular
+package com.mionix.newsapp.ui.popular
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.mionix.newsapp.R
-import com.mionix.newsapp.ui.MainActivity
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
 import kotlinx.android.synthetic.main.fragment_dialog_description.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
