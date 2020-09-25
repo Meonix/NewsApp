@@ -1,4 +1,4 @@
-package com.mionix.newsapp.Utils
+package com.mionix.newsapp.utils
 
 object AppConstants {
     const val ENGLISH = "English"

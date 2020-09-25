@@ -1,4 +1,4 @@
-package com.mionix.newsapp.ui.Popular.adapter
+package com.mionix.newsapp.ui.popular.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
