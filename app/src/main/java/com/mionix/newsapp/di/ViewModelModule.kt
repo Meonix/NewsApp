@@ -1,9 +1,6 @@
 package com.mionix.baseapp.di
 
-import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
-import com.mionix.newsapp.ui.viewmodel.PopularNewsViewModel
-import com.mionix.newsapp.ui.viewmodel.SearchNewsViewModel
-import com.mionix.newsapp.ui.viewmodel.SourcesNewsViewModel
+import com.mionix.newsapp.ui.viewmodel.*
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -12,4 +9,5 @@ val viewModelModule = module {
     single { ActivityViewModel() }
     viewModel { SearchNewsViewModel(get()) }
     viewModel { SourcesNewsViewModel(get()) }
+    viewModel { SpinnerViewModel() }
 }
