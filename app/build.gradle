@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -66,4 +68,6 @@ dependencies {
     implementation 'io.alterac.blurkit:blurkit:1.1.0'
     //KTX
     implementation "androidx.fragment:fragment-ktx:1.2.5"
+    //FireBase
+    implementation 'com.google.firebase:firebase-auth-ktx:19.4.0'
 }

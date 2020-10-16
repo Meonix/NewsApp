@@ -10,4 +10,14 @@
     <string name="united_arab_emirates">United Arab Emirates</string>
     <string name="united_states_of_america">United States of America</string>
     <string name="search_topics_and_articles">Search topics and articles</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_password">Invalid  password</string>
+    <string name="invalid_account">Invalid account</string>
+    <string name="Invalid_confirm_password">Invalid confirm password</string>
+    <string name="password_and_confirm_password_are_not_the_same">password and confirm password are not the same</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">PassWord</string>
+    <string name="confirm_password">Confirm PassWord</string>
 </resources>

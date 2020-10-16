@@ -15,12 +15,9 @@ class MainHomeViewPagerAdapter(
         return when (listTitle[position]) {
             MainActivity.NAME_OF_TAB_POPULAR -> PopularFragment.newInstance()
             MainActivity.NAME_OF_TAB_SOURCES -> SourcesFragment.newInstance()
-            //"Register Calendar" -> RegisterCalFragment.newInstance()
-           /* 5 -> UsefulInfoFragment.newInstance()*/
             else -> PopularFragment.newInstance()
         }
     }
-
     override fun getCount(): Int {
         return listTitle.size
     }

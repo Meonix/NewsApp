@@ -20,7 +20,7 @@ class PopularNewsViewModel(private val mListPopularNews: PopularNewsRepo): BaseV
             }
 
             .onSuccess {
-                _getListPopularNews.value = it
+                _getListPopularNews.postValue(it)
             }
 
             .onFailure {
