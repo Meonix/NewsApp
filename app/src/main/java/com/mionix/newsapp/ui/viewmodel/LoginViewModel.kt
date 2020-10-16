@@ -15,7 +15,7 @@ class LoginViewModel(private val loginRepo: LoginRepo) : ViewModel() {
     val checkLogged: LiveData<Boolean> get() = _checkLogged
     private val _isLogin = MutableLiveData<Boolean>()
     val isLogin: LiveData<Boolean> get() = _isLogin
-    fun isLogged() {
+    fun checkLogged() {
         viewModelScope.launch(Dispatchers.IO) {
             _checkLogged.postValue(loginRepo.isLogin())
         }

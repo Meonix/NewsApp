@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         mActivityViewModel.isTouching.observe(this@MainActivity, Observer {
             makeBlur(it)
         })
-        mLoginViewModel.isLogged()
+        mLoginViewModel.checkLogged()
     }
 
     private fun makeBlur(it: Boolean) {
