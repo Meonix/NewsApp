@@ -22,7 +22,7 @@ import kotlin.coroutines.resume
 class LoginActivity : AppCompatActivity() {
     private val listeners = CopyOnWriteArrayList<MotionLayout.TransitionListener>()
 
-    private val mLoginViewModel : LoginViewModel by viewModel()
+    private val mLoginViewModel: LoginViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -35,92 +35,128 @@ class LoginActivity : AppCompatActivity() {
             onBackPressed()
         }
         motionLayoutLogin.setOnClickListener {
-            if (motionLayoutLogin.currentState == R.id.revealOfLoginButton){
-                animationCloseLogin()
-            }
-            else if (motionLayoutLogin.currentState == R.id.revealOfRegisterButton){
-                animationCloseRegister()
+            when (motionLayoutLogin.currentState) {
+                R.id.revealOfLoginButton -> {
+                    animationCloseLogin()
+                }
+                R.id.revealOfRegisterButton -> {
+                    animationCloseRegister()
+                }
             }
         }
-        btLogin.setOnClickListener{
-            if(motionLayoutLogin.currentState == R.id.baseState){
-                animationOpenLogin()
-            }
-            else if(motionLayoutLogin.currentState == R.id.revealOfRegisterButton){
-                animationCloseRegister()
-                GlobalScope.launch(Dispatchers.Main) {
-                    awaitTransitionComplete(R.id.baseState)
+        btLogin.setOnClickListener {
+            when (motionLayoutLogin.currentState) {
+                R.id.baseState -> {
                     animationOpenLogin()
+                }
+                R.id.revealOfRegisterButton -> {
+                    animationCloseRegister()
+                    GlobalScope.launch(Dispatchers.Main) {
+                        awaitTransitionComplete(R.id.baseState)
+                        animationOpenLogin()
+                    }
                 }
             }
         }
 
         btRegister.setOnClickListener {
-            if (motionLayoutLogin.currentState == R.id.revealOfLoginButton){
-                animationCloseLogin()
-                GlobalScope.launch(Dispatchers.Main) {
-                    awaitTransitionComplete(R.id.baseState)
+            when (motionLayoutLogin.currentState) {
+                R.id.revealOfLoginButton -> {
+                    animationCloseLogin()
+                    GlobalScope.launch(Dispatchers.Main) {
+                        awaitTransitionComplete(R.id.baseState)
+                        animationOpenRegister()
+                    }
+                }
+                R.id.baseState -> {
                     animationOpenRegister()
                 }
             }
-            else if(motionLayoutLogin.currentState == R.id.baseState){
-                animationOpenRegister()
-            }
-
         }
         btLoginInRevealState.setOnClickListener {
-            if (motionLayoutLogin.currentState == R.id.revealOfLoginButton){
-                if(!Fun.isEmailValid(etEmail.text.toString()) || etEmail.text.toString().isEmpty()){
-                    Toast.makeText(this@LoginActivity,getString(R.string.invalid_email),Toast.LENGTH_SHORT).show()
-                    etEmail.requestFocus()
-                }
-                else if(etPass.text.toString().isEmpty()){
-                    Toast.makeText(this@LoginActivity,getString(R.string.invalid_password),Toast.LENGTH_SHORT).show()
-                    etPass.requestFocus()
-                }
-                else{
-                    mLoginViewModel.login(etEmail.text.toString().trim(),etPass.text.toString().trim())
-                    mLoginViewModel.isLogin.observe(this@LoginActivity, Observer {
-                        if (it) {
-                            val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            Toast.makeText(
-                                this@LoginActivity,
-                                getString(R.string.invalid_account),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    })
+            when (motionLayoutLogin.currentState) {
+                R.id.revealOfLoginButton -> {
+                    if (!Fun.isEmailValid(etEmail.text.toString()) || etEmail.text.toString()
+                            .isEmpty()
+                    ) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.invalid_email),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        etEmail.requestFocus()
+                    } else if (etPass.text.toString().isEmpty()) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.invalid_password),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        etPass.requestFocus()
+                    } else {
+                        mLoginViewModel.login(
+                            etEmail.text.toString().trim(),
+                            etPass.text.toString().trim()
+                        )
+                        mLoginViewModel.isLogin.observe(this@LoginActivity, Observer {
+                            if (it) {
+                                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    getString(R.string.invalid_account),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        })
 
+                    }
                 }
-            }
-            else{
-                if(!Fun.isEmailValid(etEmail.text.toString()) || etEmail.text.toString().isEmpty()){
-                    Toast.makeText(this@LoginActivity,getString(R.string.invalid_email),Toast.LENGTH_SHORT).show()
-                    etEmail.requestFocus()
-                }
-                else if(etPass.text.toString().isEmpty()){
-                    Toast.makeText(this@LoginActivity,getString(R.string.invalid_password),Toast.LENGTH_SHORT).show()
-                    etPass.requestFocus()
-                }
-                else if(etConfirmPass.text.toString().isEmpty()){
-                    Toast.makeText(this@LoginActivity,getString(R.string.Invalid_confirm_password),Toast.LENGTH_SHORT).show()
-                    etConfirmPass.requestFocus()
-                }
-                else if(etPass.text.toString() != etConfirmPass.text.toString()){
-                    Toast.makeText(this@LoginActivity,getString(R.string.password_and_confirm_password_are_not_the_same),Toast.LENGTH_SHORT).show()
-                    etConfirmPass.requestFocus()
-                }
-                else{
-                    mLoginViewModel.createAccount(etEmail.text.toString().trim(),etPass.text.toString().trim())
+                else -> {
+                    if (!Fun.isEmailValid(etEmail.text.toString()) || etEmail.text.toString()
+                            .isEmpty()
+                    ) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.invalid_email),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        etEmail.requestFocus()
+                    } else if (etPass.text.toString().isEmpty()) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.invalid_password),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        etPass.requestFocus()
+                    } else if (etConfirmPass.text.toString().isEmpty()) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.Invalid_confirm_password),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        etConfirmPass.requestFocus()
+                    } else if (etPass.text.toString() != etConfirmPass.text.toString()) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.password_and_confirm_password_are_not_the_same),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        etConfirmPass.requestFocus()
+                    } else {
+                        mLoginViewModel.createAccount(
+                            etEmail.text.toString().trim(),
+                            etPass.text.toString().trim()
+                        )
+                    }
                 }
             }
         }
     }
-    private fun animationCloseLogin(){
-        GlobalScope.launch (Dispatchers.Main){
+
+    private fun animationCloseLogin() {
+        GlobalScope.launch(Dispatchers.Main) {
             motionLayoutLogin.setTransition(R.id.tsCloseRevealLogin)
             motionLayoutLogin.transitionToState(R.id.topStateOfLoginButton)
             awaitTransitionComplete(R.id.topStateOfLoginButton)
@@ -128,8 +164,9 @@ class LoginActivity : AppCompatActivity() {
             motionLayoutLogin.transitionToState(R.id.baseState)
         }
     }
-    private fun animationOpenLogin(){
-        GlobalScope.launch (Dispatchers.Main){
+
+    private fun animationOpenLogin() {
+        GlobalScope.launch(Dispatchers.Main) {
             motionLayoutLogin.setTransition(R.id.tsToTopFromLeft)
             motionLayoutLogin.transitionToState(R.id.topStateOfLoginButton)
             awaitTransitionComplete(R.id.topStateOfLoginButton)
@@ -137,8 +174,9 @@ class LoginActivity : AppCompatActivity() {
             motionLayoutLogin.transitionToState(R.id.revealOfLoginButton)
         }
     }
-    private fun animationOpenRegister(){
-        GlobalScope.launch (Dispatchers.Main){
+
+    private fun animationOpenRegister() {
+        GlobalScope.launch(Dispatchers.Main) {
             motionLayoutLogin.setTransition(R.id.tsToTopFromLeft)
             motionLayoutLogin.transitionToState(R.id.topStateOfRegisterButton)
             awaitTransitionComplete(R.id.topStateOfRegisterButton)
@@ -146,8 +184,9 @@ class LoginActivity : AppCompatActivity() {
             motionLayoutLogin.transitionToState(R.id.revealOfRegisterButton)
         }
     }
-    private fun animationCloseRegister(){
-        GlobalScope.launch (Dispatchers.Main){
+
+    private fun animationCloseRegister() {
+        GlobalScope.launch(Dispatchers.Main) {
             motionLayoutLogin.setTransition(R.id.tsCloseRevealRegister)
             motionLayoutLogin.transitionToState(R.id.topStateOfRegisterButton)
             awaitTransitionComplete(R.id.topStateOfRegisterButton)
@@ -160,13 +199,20 @@ class LoginActivity : AppCompatActivity() {
         initToolBar()
         initMotionLayoutView()
     }
+
     private fun initToolBar() {
         toolbarLogin.ivRight.visibility = View.GONE
         toolbarLogin.ivLeft.setImageResource(R.drawable.ic_backpress)
     }
+
     private fun initMotionLayoutView() {
         motionLayoutLogin.setTransitionListener(object : MotionLayout.TransitionListener {
-            override fun onTransitionTrigger(motionLayout: MotionLayout, triggerId: Int, positive: Boolean, progress: Float) {
+            override fun onTransitionTrigger(
+                motionLayout: MotionLayout,
+                triggerId: Int,
+                positive: Boolean,
+                progress: Float
+            ) {
                 listeners.forEach {
                     it.onTransitionTrigger(motionLayout, triggerId, positive, progress)
                 }
@@ -178,7 +224,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onTransitionChange(motionLayout: MotionLayout, startId: Int, endId: Int, progress: Float) {
+            override fun onTransitionChange(
+                motionLayout: MotionLayout,
+                startId: Int,
+                endId: Int,
+                progress: Float
+            ) {
                 listeners.forEach {
                     it.onTransitionChange(motionLayout, startId, endId, progress)
                 }
@@ -203,7 +254,10 @@ class LoginActivity : AppCompatActivity() {
             withTimeout(timeout) {
                 suspendCancellableCoroutine<Unit> { continuation ->
                     val l = object : TransitionAdapter() {
-                        override fun onTransitionCompleted(motionLayout: MotionLayout, currentId: Int) {
+                        override fun onTransitionCompleted(
+                            motionLayout: MotionLayout,
+                            currentId: Int
+                        ) {
                             if (currentId == transitionId) {
                                 removeTransitionListener(this)
                                 continuation.resume(Unit)
@@ -223,13 +277,17 @@ class LoginActivity : AppCompatActivity() {
             // Transition didn't happen in time. Remove our listener and throw a cancellation
             // exception to let the coroutine know
             listener?.let(::removeTransitionListener)
-            throw CancellationException("Transition to state with id: $transitionId did not" +
-                    " complete in timeout.", tex)
+            throw CancellationException(
+                "Transition to state with id: $transitionId did not" +
+                        " complete in timeout.", tex
+            )
         }
     }
+
     private fun addTransitionListener(listener: MotionLayout.TransitionListener) {
         listeners.addIfAbsent(listener)
     }
+
     fun removeTransitionListener(listener: MotionLayout.TransitionListener) {
         listeners.remove(listener)
     }

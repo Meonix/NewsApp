@@ -7,22 +7,25 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 
-class LoginRepo{
+class LoginRepo {
     var mAuth = FirebaseAuth.getInstance()
 
-    suspend fun isLogin():Boolean = coroutineScope {
-            if(FirebaseAuth.getInstance().currentUser!=null){
-                return@coroutineScope true
-            }
-            return@coroutineScope false
+    suspend fun isLogin(): Boolean = coroutineScope {
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            return@coroutineScope true
+        }
+        return@coroutineScope false
     }
-    fun createAccountEmail(email:String,password:String){
-        mAuth.createUserWithEmailAndPassword(email,password)
+
+    fun createAccountEmail(email: String, password: String) {
+        mAuth.createUserWithEmailAndPassword(email, password)
     }
-    fun login(email: String , password: String): Task<AuthResult> {
-            return mAuth.signInWithEmailAndPassword(email, password)
+
+    fun login(email: String, password: String): Task<AuthResult> {
+        return mAuth.signInWithEmailAndPassword(email, password)
     }
-    fun logout(){
+
+    fun logout() {
         mAuth.signOut()
     }
 }

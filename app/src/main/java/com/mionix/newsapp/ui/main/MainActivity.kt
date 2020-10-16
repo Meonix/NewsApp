@@ -25,7 +25,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private var fragmentNames = mutableListOf<String>()
     private val mActivityViewModel: ActivityViewModel by viewModel()
-    private val mLoginViewModel : LoginViewModel by viewModel()
+    private val mLoginViewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
     private fun initTableLayout() {
         fragmentNames.addAll(
             mutableListOf(
-                NAME_OF_TAB_POPULAR,NAME_OF_TAB_SOURCES
+                NAME_OF_TAB_POPULAR, NAME_OF_TAB_SOURCES
             )
         )
     }
@@ -137,22 +137,20 @@ class MainActivity : AppCompatActivity() {
         )
         dl.addDrawerListener(t)
         nv.setNavigationItemSelectedListener {
-            when(it.title){
-                getString(R.string.settings) ->{
+            when (it.title) {
+                getString(R.string.settings) -> {
                 }
-                getString(R.string.my_account)->{
-                    mLoginViewModel.isLogged.observe(this@MainActivity, Observer { b->
-                        if(b) {
-                            intent = Intent(this@MainActivity,ProfileActivity::class.java)
-                            startActivity(intent)
-                        }
-                        else{
-                            intent = Intent(this@MainActivity,LoginActivity::class.java)
-                            startActivity(intent)
-                        }
+                getString(R.string.my_account) -> {
+                    mLoginViewModel.checkLogged.observe(this@MainActivity, Observer { islogged ->
+                        intent =
+                            if (islogged)
+                                Intent(this@MainActivity, ProfileActivity::class.java)
+                            else
+                                Intent(this@MainActivity, LoginActivity::class.java)
+                        startActivity(intent)
                     })
                 }
-                else ->{
+                else -> {
 
                 }
             }

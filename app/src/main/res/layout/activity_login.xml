@@ -63,26 +63,26 @@
 
         <EditText
             android:id="@+id/etEmail"
-            android:inputType="textEmailAddress"
             android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_50"
             android:elevation="@dimen/elevation_2"
-            android:hint="@string/email" />
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
 
         <EditText
-            android:inputType="textPassword"
             android:id="@+id/etPass"
             android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_50"
             android:elevation="@dimen/elevation_1"
-            android:hint="@string/password" />
+            android:hint="@string/password"
+            android:inputType="textPassword" />
 
         <EditText
-            android:inputType="textPassword"
             android:id="@+id/etConfirmPass"
             android:layout_width="@dimen/size_50"
             android:layout_height="@dimen/size_50"
             android:elevation="@dimen/elevation_2"
-            android:hint="@string/confirm_password" />
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword" />
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </RelativeLayout>
