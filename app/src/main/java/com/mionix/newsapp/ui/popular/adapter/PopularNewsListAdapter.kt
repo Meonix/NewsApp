@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.mionix.newsapp.R
 import com.mionix.newsapp.model.Articles
 import kotlinx.android.synthetic.main.item_popular_news.view.*
+import java.text.SimpleDateFormat
 
 class PopularNewsListAdapter(private var newsList:MutableList<Articles>): RecyclerView.Adapter<PopularNewsListAdapter.PopularNewList>() {
     var onItemLongClick: ((description:String,content:String,url:String) -> Unit)? = null
@@ -40,16 +41,14 @@ class PopularNewsListAdapter(private var newsList:MutableList<Articles>): Recycl
         holder.onBind(newsList[position])
     }
     inner class PopularNewList(itemView :View): RecyclerView.ViewHolder(itemView){
-        @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
         fun onBind(data : Articles){
             //Load image to image view
-            Glide.with(itemView.context)
-                .load(data.urlToImage)
-                .centerCrop()
-                .placeholder(R.drawable.ic_error_404)
-                .into(itemView.ivItemPopularNews)
-            itemView.tvItemTitlePopularNews.text = data.title
-            itemView.tvItemSourceAndTimePopularNews.text = "${data.publishedAt} | ${data.source.name}"
+            loadDataIntoView(data)
+            handleActionClick(data)
+        }
+
+        @SuppressLint("ClickableViewAccessibility")
+        private fun handleActionClick(data : Articles) {
             itemView.setOnLongClickListener {
                 onItemLongClick?.invoke(data.description ?: "", data.content ?: "",data.urlToImage?:"")
                 return@setOnLongClickListener true
@@ -58,6 +57,21 @@ class PopularNewsListAdapter(private var newsList:MutableList<Articles>): Recycl
                 onItemTouchClick?.invoke(view,motionEvent)
                 return@setOnTouchListener false
             }
+        }
+
+        @SuppressLint("SimpleDateFormat", "SetTextI18n")
+        private fun loadDataIntoView(data : Articles) {
+            Glide.with(itemView.context)
+                .load(data.urlToImage)
+                .centerCrop()
+                .placeholder(R.drawable.ic_no_image)
+                .into(itemView.ivItemPopularNews)
+            itemView.tvItemTitlePopularNews.text = data.title
+            // format date time
+            val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+            val formatter = SimpleDateFormat("dd/MM/yyyy HH:mm")
+            val output: String = formatter.format(parser.parse(data.publishedAt))
+            itemView.tvItemSourceAndTimePopularNews.text = "$output | ${data.source.name}"
         }
     }
 }

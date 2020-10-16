@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionSence xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+    <ConstraintSet android:id="@+id/baseState">
+        <Constraint android:id="@id/btLogin">
+            <Layout
+                android:layout_width="@dimen/size_150"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginBottom="@dimen/size_100"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toStartOf="@id/btRegister"
+                motion:layout_constraintStart_toStartOf="parent" />
+            <CustomAttribute
+                motion:attributeName="radius"
+                motion:customDimension="25dp" />
+            <CustomAttribute
+                motion:attributeName="cardBackgroundColor"
+                motion:customColorValue="#0EF3BE" />
+        </Constraint>
+        <Constraint android:id="@id/btRegister">
+            <Layout
+                android:layout_width="@dimen/size_150"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginBottom="@dimen/size_100"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="@id/btLogin" />
+            <CustomAttribute
+                motion:attributeName="radius"
+                motion:customDimension="25dp" />
+            <CustomAttribute
+                motion:attributeName="cardBackgroundColor"
+                motion:customColorValue="#0EF3BE" />
+        </Constraint>
+        <Constraint android:id="@id/etEmail">
+            <Layout
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginStart="@dimen/margin_50"
+                motion:layout_constraintBottom_toBottomOf="@id/btLogin"
+                motion:layout_constraintStart_toStartOf="@id/btLogin"
+                motion:layout_constraintTop_toTopOf="@id/btLogin" />
+            <PropertySet android:visibility="gone" />
+        </Constraint>
+        <Constraint android:id="@id/etPass">
+            <Layout
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_50"
+                motion:layout_constraintBottom_toBottomOf="@id/btLogin"
+                motion:layout_constraintStart_toStartOf="@id/btLogin"
+                motion:layout_constraintTop_toBottomOf="@id/etEmail" />
+            <PropertySet android:visibility="gone" />
+        </Constraint>
+        <Constraint android:id="@id/etConfirmPass">
+            <Layout
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_50"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent" />
+            <PropertySet android:visibility="gone" />
+        </Constraint>
+        <Constraint android:id="@id/btLoginInRevealState">
+            <Layout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toStartOf="parent" />
+            <PropertySet android:visibility="gone" />
+        </Constraint>
+        <Constraint android:id="@id/tvLogin">
+            <Layout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                motion:layout_constraintBottom_toBottomOf="@id/btLogin"
+                motion:layout_constraintEnd_toEndOf="@id/btLogin"
+                motion:layout_constraintStart_toStartOf="@id/btLogin"
+                motion:layout_constraintTop_toTopOf="@id/btLogin" />
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+        <Constraint android:id="@id/tvRegister">
+            <Layout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                motion:layout_constraintBottom_toBottomOf="@id/btRegister"
+                motion:layout_constraintEnd_toEndOf="@id/btRegister"
+                motion:layout_constraintStart_toStartOf="@id/btRegister"
+                motion:layout_constraintTop_toTopOf="@id/btRegister" />
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/topStateOfLoginButton"
+        motion:deriveConstraintsFrom="@id/baseState">
+        <Constraint android:id="@id/btLogin">
+            <Layout
+                android:layout_width="@dimen/size_64"
+                android:layout_height="@dimen/size_64"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+            <CustomAttribute
+                motion:attributeName="radius"
+                motion:customDimension="@dimen/radius_25" />
+            <CustomAttribute
+                motion:attributeName="cardBackgroundColor"
+                motion:customColorValue="#292CE6" />
+        </Constraint>
+        <Constraint android:id="@id/tvLogin">
+            <Layout
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginStart="@dimen/margin_53"
+                motion:layout_constraintBottom_toBottomOf="@id/btRegister"
+                motion:layout_constraintEnd_toEndOf="@id/btRegister"
+                motion:layout_constraintStart_toStartOf="@id/btRegister"
+                motion:layout_constraintTop_toTopOf="@id/btRegister" />
+            <PropertySet android:visibility="gone" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/topStateOfRegisterButton"
+        motion:deriveConstraintsFrom="@id/baseState">
+        <Constraint android:id="@id/btRegister">
+            <Layout
+                android:layout_width="@dimen/size_64"
+                android:layout_height="@dimen/size_64"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+            <CustomAttribute
+                motion:attributeName="radius"
+                motion:customDimension="@dimen/radius_25" />
+            <CustomAttribute
+                motion:attributeName="cardBackgroundColor"
+                motion:customColorValue="#292CE6" />
+        </Constraint>
+        <Constraint android:id="@id/tvRegister">
+            <Layout
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginStart="@dimen/margin_53"
+                motion:layout_constraintBottom_toBottomOf="@id/btLogin"
+                motion:layout_constraintEnd_toEndOf="@id/btLogin"
+                motion:layout_constraintStart_toStartOf="@id/btLogin"
+                motion:layout_constraintTop_toTopOf="@id/btLogin" />
+            <PropertySet android:visibility="gone" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/revealOfLoginButton"
+        motion:deriveConstraintsFrom="@id/topStateOfLoginButton">
+        <Constraint android:id="@id/btLogin">
+            <Layout
+                android:layout_width="@dimen/size_400"
+                android:layout_height="@dimen/size_550"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+            <CustomAttribute
+                motion:attributeName="radius"
+                motion:customDimension="@dimen/radius_0" />
+            <CustomAttribute
+                motion:attributeName="cardBackgroundColor"
+                motion:customColorValue="@color/purple" />
+        </Constraint>
+        <Constraint android:id="@id/etEmail">
+            <Layout
+                android:layout_width="@dimen/size_350"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_70"
+                motion:layout_constraintEnd_toEndOf="@id/btLogin"
+                motion:layout_constraintStart_toStartOf="@id/btLogin"
+                motion:layout_constraintTop_toTopOf="@id/btLogin" />
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+        <Constraint android:id="@id/etPass">
+            <Layout
+                android:layout_width="@dimen/size_350"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_50"
+                motion:layout_constraintEnd_toEndOf="@id/btLogin"
+                motion:layout_constraintStart_toStartOf="@id/btLogin"
+                motion:layout_constraintTop_toBottomOf="@id/etEmail" />
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+        <Constraint android:id="@id/btLoginInRevealState">
+            <Layout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_50"
+                motion:layout_constraintBottom_toBottomOf="@id/btLogin"
+                motion:layout_constraintEnd_toEndOf="@id/btLogin"
+                motion:layout_constraintStart_toStartOf="@id/btLogin" />
+            <PropertySet android:visibility="visible" />
+            <CustomAttribute
+                motion:attributeName="text"
+                motion:customStringValue="Login" />
+        </Constraint>
+        <Constraint android:id="@id/tvLogin">
+            <Layout
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginStart="@dimen/margin_53"
+                motion:layout_constraintBottom_toBottomOf="@id/btLogin"
+                motion:layout_constraintEnd_toEndOf="@id/btLogin"
+                motion:layout_constraintStart_toStartOf="@id/btLogin"
+                motion:layout_constraintTop_toTopOf="@id/btLogin" />
+            <PropertySet android:visibility="gone" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/revealOfRegisterButton"
+        motion:deriveConstraintsFrom="@id/topStateOfRegisterButton">
+        <Constraint android:id="@id/btRegister">
+            <Layout
+                android:layout_width="@dimen/size_400"
+                android:layout_height="@dimen/size_550"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+            <CustomAttribute
+                motion:attributeName="radius"
+                motion:customDimension="@dimen/radius_0" />
+            <CustomAttribute
+                motion:attributeName="cardBackgroundColor"
+                motion:customColorValue="@color/purple" />
+        </Constraint>
+        <Constraint android:id="@id/etEmail">
+            <Layout
+                android:layout_width="@dimen/size_350"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_70"
+                motion:layout_constraintEnd_toEndOf="@id/btRegister"
+                motion:layout_constraintStart_toStartOf="@id/btRegister"
+                motion:layout_constraintTop_toTopOf="@id/btRegister" />
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+        <Constraint android:id="@id/etPass">
+            <Layout
+                android:layout_width="@dimen/size_350"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_50"
+                motion:layout_constraintEnd_toEndOf="@id/btRegister"
+                motion:layout_constraintStart_toStartOf="@id/btRegister"
+                motion:layout_constraintTop_toBottomOf="@id/etEmail" />
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+        <Constraint android:id="@id/etConfirmPass">
+            <Layout
+                android:layout_width="@dimen/size_350"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_50"
+                motion:layout_constraintTop_toBottomOf="@id/etPass"
+                motion:layout_constraintStart_toStartOf="@id/btRegister"
+                motion:layout_constraintEnd_toEndOf="@id/btRegister" />
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+        <Constraint android:id="@id/btLoginInRevealState">
+            <Layout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_50"
+                motion:layout_constraintBottom_toBottomOf="@id/btRegister"
+                motion:layout_constraintEnd_toEndOf="@id/btRegister"
+                motion:layout_constraintStart_toStartOf="@id/btRegister" />
+            <PropertySet android:visibility="visible" />
+            <CustomAttribute
+                motion:attributeName="text"
+                motion:customStringValue="Register" />
+
+        </Constraint>
+        <Constraint android:id="@id/tvRegister">
+            <Layout
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginStart="@dimen/margin_53"
+                motion:layout_constraintBottom_toBottomOf="@id/btRegister"
+                motion:layout_constraintEnd_toEndOf="@id/btRegister"
+                motion:layout_constraintStart_toStartOf="@id/btRegister"
+                motion:layout_constraintTop_toTopOf="@id/btRegister" />
+            <PropertySet android:visibility="gone" />
+        </Constraint>
+    </ConstraintSet>
+
+
+    <Transition android:id="@+id/tsToTopFromLeft"
+        motion:constraintSetEnd="@+id/topStateOfLoginButton"
+        motion:constraintSetStart="@+id/baseState"
+        motion:duration="@integer/duration_600">
+        <KeyFrameSet>
+            <KeyPosition
+                motion:framePosition="60"
+                motion:keyPositionType="pathRelative"
+                motion:motionTarget="@id/btLogin"
+                motion:percentX="0.15"
+                motion:percentY="0.15" />
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition android:id="@+id/tsToTopFromRight"
+        motion:constraintSetEnd="@+id/topStateOfRegisterButton"
+        motion:constraintSetStart="@+id/baseState"
+        motion:duration="@integer/duration_600">
+        <KeyFrameSet>
+            <KeyPosition
+                motion:framePosition="60"
+                motion:keyPositionType="pathRelative"
+                motion:motionTarget="@id/btRegister"
+                motion:percentX="0.15"
+                motion:percentY="-0.15" />
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition android:id="@+id/tsToRevealLogin"
+        motion:constraintSetEnd="@+id/revealOfLoginButton"
+        motion:constraintSetStart="@+id/topStateOfLoginButton"
+        motion:duration="@integer/duration_400">
+        <KeyFrameSet>
+            <KeyAttribute
+                motion:framePosition="10"
+                motion:motionTarget="@+id/btLogin">
+                <CustomAttribute
+                    motion:attributeName="radius"
+                    motion:customDimension="52dp" />
+            </KeyAttribute>
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition android:id="@+id/tsToRevealRegister"
+        motion:constraintSetEnd="@id/revealOfRegisterButton"
+        motion:constraintSetStart="@id/topStateOfRegisterButton"
+        motion:duration="@integer/duration_400">
+        <KeyFrameSet>
+            <KeyAttribute
+                motion:framePosition="10"
+                motion:motionTarget="@+id/btRegister">
+                <CustomAttribute
+                    motion:attributeName="radius"
+                    motion:customDimension="52dp" />
+            </KeyAttribute>
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition android:id="@+id/tsCloseRevealLogin"
+        motion:constraintSetEnd="@+id/topStateOfLoginButton"
+        motion:constraintSetStart="@+id/revealOfLoginButton"
+        motion:duration="@integer/duration_400">
+        <KeyFrameSet>
+            <KeyAttribute
+                motion:framePosition="10"
+                motion:motionTarget="@+id/btLogin">
+                <CustomAttribute
+                    motion:attributeName="radius"
+                    motion:customDimension="52dp" />
+            </KeyAttribute>
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition android:id="@+id/tsCloseRevealRegister"
+        motion:constraintSetEnd="@+id/topStateOfRegisterButton"
+        motion:constraintSetStart="@+id/revealOfRegisterButton"
+        motion:duration="@integer/duration_400">
+        <KeyFrameSet>
+            <KeyAttribute
+                motion:framePosition="10"
+                motion:motionTarget="@+id/btRegister">
+                <CustomAttribute
+                    motion:attributeName="radius"
+                    motion:customDimension="52dp" />
+            </KeyAttribute>
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition android:id="@+id/tsToBotFromLeft"
+        motion:constraintSetEnd="@id/baseState"
+        motion:constraintSetStart="@id/topStateOfLoginButton"
+        motion:duration="@integer/duration_600">
+        <KeyFrameSet>
+            <KeyPosition
+                motion:framePosition="60"
+                motion:keyPositionType="pathRelative"
+                motion:motionTarget="@id/btLogin"
+                motion:percentX="0.85"
+                motion:percentY="-0.15" />
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition android:id="@+id/tsToBotFromRight"
+        motion:constraintSetEnd="@id/baseState"
+        motion:constraintSetStart="@id/topStateOfRegisterButton"
+        motion:duration="@integer/duration_600">
+        <KeyFrameSet>
+            <KeyPosition
+                motion:framePosition="60"
+                motion:keyPositionType="pathRelative"
+                motion:motionTarget="@id/btRegister"
+                motion:percentX="0.85"
+                motion:percentY="0.15" />
+        </KeyFrameSet>
+    </Transition>
+</MotionSence>

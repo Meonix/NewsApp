@@ -10,4 +10,5 @@ val viewModelModule = module {
     viewModel { SearchNewsViewModel(get()) }
     viewModel { SourcesNewsViewModel(get()) }
     viewModel { SpinnerViewModel() }
+    viewModel { LoginViewModel(get()) }
 }

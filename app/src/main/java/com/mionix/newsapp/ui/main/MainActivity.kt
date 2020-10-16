@@ -3,6 +3,7 @@ package com.mionix.newsapp.ui.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -10,9 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.mionix.newsapp.R
+import com.mionix.newsapp.ui.login.LoginActivity
+import com.mionix.newsapp.ui.login.ProfileActivity
 import com.mionix.newsapp.ui.main.adapter.MainHomeViewPagerAdapter
 import com.mionix.newsapp.ui.search.SearchActivity
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
+import com.mionix.newsapp.ui.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,6 +25,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private var fragmentNames = mutableListOf<String>()
     private val mActivityViewModel: ActivityViewModel by viewModel()
+    private val mLoginViewModel: LoginViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -80,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         mActivityViewModel.isTouching.observe(this@MainActivity, Observer {
             makeBlur(it)
         })
+        mLoginViewModel.checkLogged()
     }
 
     private fun makeBlur(it: Boolean) {
@@ -117,7 +124,7 @@ class MainActivity : AppCompatActivity() {
     private fun initTableLayout() {
         fragmentNames.addAll(
             mutableListOf(
-                NAME_OF_TAB_POPULAR,NAME_OF_TAB_SOURCES
+                NAME_OF_TAB_POPULAR, NAME_OF_TAB_SOURCES
             )
         )
     }
@@ -129,6 +136,26 @@ class MainActivity : AppCompatActivity() {
             R.string.navigation_drawer_close
         )
         dl.addDrawerListener(t)
+        nv.setNavigationItemSelectedListener {
+            when (it.title) {
+                getString(R.string.settings) -> {
+                }
+                getString(R.string.my_account) -> {
+                    mLoginViewModel.checkLogged.observe(this@MainActivity, Observer { islogged ->
+                        intent =
+                            if (islogged)
+                                Intent(this@MainActivity, ProfileActivity::class.java)
+                            else
+                                Intent(this@MainActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                    })
+                }
+                else -> {
+
+                }
+            }
+            true
+        }
         t.syncState()
     }
 }
