@@ -29,10 +29,7 @@ class LoginRepo {
     }
 
     fun createAccountEmail(email: String, password: String): Task<AuthResult> {
-        return mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task->
-            if(task.isSuccessful){
-            }
-        }
+        return mAuth.createUserWithEmailAndPassword(email, password)
     }
 
     fun login(email: String, password: String): Task<AuthResult> {

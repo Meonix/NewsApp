@@ -24,17 +24,17 @@ class ProfileRepo {
     suspend fun getDataProfile(): DataProfile = suspendCoroutine { data ->
         val eventListener: ValueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val userRef = dataSnapshot.child("Users")
                 val name = mAuth.currentUser?.uid?.let {
-                    dataSnapshot.child("Users").child(it).child("name").getValue(String::class.java)
+                    userRef.child(it).child("name").getValue(String::class.java)
                 }
                 val image = mAuth.currentUser?.uid?.let {
-                    dataSnapshot.child("Users").child(it).child("avatar")
-                        .getValue(String::class.java)
+                    userRef.child(it).child("avatar").getValue(String::class.java)
                 }
                 try {
                     data.resume(DataProfile(image, name))
 
-                } catch (e:Exception) {
+                } catch (e: Exception) {
                     Log.d("DUY", e.toString())
                 }
             }
@@ -65,12 +65,12 @@ class ProfileRepo {
                         rootRef.child("Users").child(uid).child("avatar")
                             .setValue(downloadUri.toString().replace(".", "Dot"))
                     }
-                } else {
                 }
             }
         }
     }
-    fun updateName(name:String){
+
+    fun updateName(name: String) {
         mAuth.currentUser?.uid?.let { uid ->
             rootRef.child("Users").child(uid).child("name")
                 .setValue(name)

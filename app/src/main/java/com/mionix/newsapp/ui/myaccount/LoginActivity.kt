@@ -94,28 +94,7 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                         etPass.requestFocus()
                     } else {
-                        //Login
-                        showDialog(getString(R.string.title_bar_login),getString(R.string.message_bar_login))
-                        mLoginViewModel.login(
-                            etEmail.text.toString().trim(),
-                            etPass.text.toString().trim()
-                        )
-                        mLoginViewModel.isLogin.observe(this@LoginActivity, Observer {
-                            if (it) {
-                                loadingBar.dismiss()
-                                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                loadingBar.dismiss()
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    getString(R.string.invalid_account),
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        })
-
+                        login()
                     }
                 }
                 else -> {
@@ -150,25 +129,51 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                         etConfirmPass.requestFocus()
                     } else {
-                        //Create Account
-                        showDialog("Creating account","Please wait, while we are creating new account for you...")
-                        mLoginViewModel.createAccount(
-                            etEmail.text.toString().trim(),
-                            etPass.text.toString().trim()
-                        )
-
-                        mLoginViewModel.isLogin.observe(this@LoginActivity, Observer {
-                            if (it) {
-                                loadingBar.dismiss()
-                                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            }
-                        })
+                        createAccount()
                     }
                 }
             }
         }
+    }
+
+    private fun createAccount() {
+        showDialog("Creating account","Please wait, while we are creating new account for you...")
+        mLoginViewModel.createAccount(
+            etEmail.text.toString().trim(),
+            etPass.text.toString().trim()
+        )
+
+        mLoginViewModel.isLogin.observe(this@LoginActivity, Observer {
+            if (it) {
+                loadingBar.dismiss()
+                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
+    }
+
+    private fun login() {
+        showDialog(getString(R.string.title_bar_login),getString(R.string.message_bar_login))
+        mLoginViewModel.login(
+            etEmail.text.toString().trim(),
+            etPass.text.toString().trim()
+        )
+        mLoginViewModel.isLogin.observe(this@LoginActivity, Observer {
+            if (it) {
+                loadingBar.dismiss()
+                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                loadingBar.dismiss()
+                Toast.makeText(
+                    this@LoginActivity,
+                    getString(R.string.invalid_account),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 
     private fun animationCloseLogin() {
