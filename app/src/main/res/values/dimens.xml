@@ -34,4 +34,9 @@
     <dimen name="radius_30">30dp</dimen>
     <dimen name="elevation_1">1dp</dimen>
     <dimen name="elevation_2">2dp</dimen>
+    <dimen name="size_75">75dp</dimen>
+    <dimen name="size_2">2dp</dimen>
+    <dimen name="size_1">1dp</dimen>
+    <dimen name="margin_75">75dp</dimen>
+    <dimen name="margin_90">90dp</dimen>
 </resources>

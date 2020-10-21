@@ -3,7 +3,6 @@ package com.mionix.newsapp.ui.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -11,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.mionix.newsapp.R
-import com.mionix.newsapp.ui.login.LoginActivity
-import com.mionix.newsapp.ui.login.ProfileActivity
+import com.mionix.newsapp.ui.myaccount.LoginActivity
+import com.mionix.newsapp.ui.myaccount.ProfileActivity
 import com.mionix.newsapp.ui.main.adapter.MainHomeViewPagerAdapter
 import com.mionix.newsapp.ui.search.SearchActivity
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
@@ -86,7 +85,6 @@ class MainActivity : AppCompatActivity() {
         mActivityViewModel.isTouching.observe(this@MainActivity, Observer {
             makeBlur(it)
         })
-        mLoginViewModel.checkLogged()
     }
 
     private fun makeBlur(it: Boolean) {
@@ -141,6 +139,7 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.settings) -> {
                 }
                 getString(R.string.my_account) -> {
+                    mLoginViewModel.checkLogged()
                     mLoginViewModel.checkLogged.observe(this@MainActivity, Observer { islogged ->
                         intent =
                             if (islogged)

@@ -1,9 +1,9 @@
-package com.mionix.newsapp.ui.login
+package com.mionix.newsapp.ui.myaccount
 
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -21,8 +21,9 @@ import kotlin.coroutines.resume
 
 class LoginActivity : AppCompatActivity() {
     private val listeners = CopyOnWriteArrayList<MotionLayout.TransitionListener>()
-
     private val mLoginViewModel: LoginViewModel by viewModel()
+    private lateinit var loadingBar : ProgressDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -93,24 +94,7 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                         etPass.requestFocus()
                     } else {
-                        mLoginViewModel.login(
-                            etEmail.text.toString().trim(),
-                            etPass.text.toString().trim()
-                        )
-                        mLoginViewModel.isLogin.observe(this@LoginActivity, Observer {
-                            if (it) {
-                                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    getString(R.string.invalid_account),
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        })
-
+                        login()
                     }
                 }
                 else -> {
@@ -145,14 +129,51 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                         etConfirmPass.requestFocus()
                     } else {
-                        mLoginViewModel.createAccount(
-                            etEmail.text.toString().trim(),
-                            etPass.text.toString().trim()
-                        )
+                        createAccount()
                     }
                 }
             }
         }
+    }
+
+    private fun createAccount() {
+        showDialog("Creating account","Please wait, while we are creating new account for you...")
+        mLoginViewModel.createAccount(
+            etEmail.text.toString().trim(),
+            etPass.text.toString().trim()
+        )
+
+        mLoginViewModel.isLogin.observe(this@LoginActivity, Observer {
+            if (it) {
+                loadingBar.dismiss()
+                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
+    }
+
+    private fun login() {
+        showDialog(getString(R.string.title_bar_login),getString(R.string.message_bar_login))
+        mLoginViewModel.login(
+            etEmail.text.toString().trim(),
+            etPass.text.toString().trim()
+        )
+        mLoginViewModel.isLogin.observe(this@LoginActivity, Observer {
+            if (it) {
+                loadingBar.dismiss()
+                val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                loadingBar.dismiss()
+                Toast.makeText(
+                    this@LoginActivity,
+                    getString(R.string.invalid_account),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 
     private fun animationCloseLogin() {
@@ -194,10 +215,17 @@ class LoginActivity : AppCompatActivity() {
             motionLayoutLogin.transitionToState(R.id.baseState)
         }
     }
-
+    private fun showDialog(title:String,message:String){
+        loadingBar.setTitle(title)
+        loadingBar.setMessage(message)
+        loadingBar.setCanceledOnTouchOutside(true)
+        loadingBar.show()
+    }
     private fun initView() {
         initToolBar()
         initMotionLayoutView()
+        loadingBar = ProgressDialog(this@LoginActivity)
+
     }
 
     private fun initToolBar() {

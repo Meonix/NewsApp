@@ -11,4 +11,6 @@ val viewModelModule = module {
     viewModel { SourcesNewsViewModel(get()) }
     viewModel { SpinnerViewModel() }
     viewModel { LoginViewModel(get()) }
+    viewModel { ProfileViewModel(get()) }
+
 }
