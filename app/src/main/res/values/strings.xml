@@ -20,4 +20,8 @@
     <string name="email">Email</string>
     <string name="password">PassWord</string>
     <string name="confirm_password">Confirm PassWord</string>
+    <string name="upload_file_error">upload file error</string>
+    <string name="logout">Logout</string>
+    <string name="title_bar_login">In progress to login</string>
+    <string name="message_bar_login">Please wait few seconds..</string>
 </resources>

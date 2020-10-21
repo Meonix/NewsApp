@@ -2,11 +2,7 @@ package com.mionix.baseapp.di
 
 
 
-import com.mionix.newsapp.repo.LoginRepo
-import com.mionix.newsapp.repo.PopularNewsRepo
-import com.mionix.newsapp.repo.SearchNewsRepo
-import com.mionix.newsapp.repo.SourcesNewsRepo
-import org.koin.android.ext.koin.androidApplication
+import com.mionix.newsapp.repo.*
 import org.koin.dsl.module
 
 val repositoryModule = module {
@@ -14,6 +10,7 @@ val repositoryModule = module {
       single { SearchNewsRepo(get()) }
       single { SourcesNewsRepo(get()) }
       single { LoginRepo() }
+      single { ProfileRepo() }
 //      single { provideSecurePreferences(androidApplication() as MyApplication)}
 }
 //fun provideSecurePreferences(app: MyApplication): SecurePreferences {

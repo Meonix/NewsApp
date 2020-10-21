@@ -1,13 +1,13 @@
 package com.mionix.newsapp.ui.viewmodel
 
+import android.content.ContentResolver
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mionix.newsapp.model.ListPopularNews
 import com.mionix.newsapp.repo.LoginRepo
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginRepo: LoginRepo) : ViewModel() {
@@ -30,6 +30,13 @@ class LoginViewModel(private val loginRepo: LoginRepo) : ViewModel() {
     }
 
     fun createAccount(email: String, password: String) {
-        loginRepo.createAccountEmail(email, password)
+        viewModelScope.launch(Dispatchers.IO) {
+            loginRepo.createAccountEmail(email, password).addOnCompleteListener {
+                _isLogin.postValue(it.isSuccessful)
+            }
+        }
+    }
+    fun logout(){
+        loginRepo.logout()
     }
 }
