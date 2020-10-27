@@ -1,6 +1,7 @@
 package com.mionix.newsapp.ui.popular
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -352,6 +353,11 @@ class PopularFragment : Fragment() {
                     mActivityViewModel.isTouching.postValue(false)
                 }
             }
+        }
+        mPopularNewsListAdapter.onItemClick = {
+            val intent = Intent(context,NewsDetail::class.java)
+            intent.putExtra("urlWebView",it)
+            startActivity(intent)
         }
     }
 

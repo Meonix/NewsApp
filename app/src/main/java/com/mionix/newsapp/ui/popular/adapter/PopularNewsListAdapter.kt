@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat
 class PopularNewsListAdapter(private var newsList:MutableList<Articles>): RecyclerView.Adapter<PopularNewsListAdapter.PopularNewList>() {
     var onItemLongClick: ((description:String,content:String,url:String) -> Unit)? = null
     var onItemTouchClick: ((view:View , motionEvent:MotionEvent) -> Unit)? = null
+    var onItemClick: ((urlWebView:String) -> Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,7 +36,7 @@ class PopularNewsListAdapter(private var newsList:MutableList<Articles>): Recycl
     fun updateData(newsList:List<Articles>){
         val totalItem = itemCount
         this.newsList.addAll(newsList)
-        notifyItemRangeInserted(totalItem,newsList.size -1 )
+        notifyItemRangeInserted(totalItem,newsList.size -1)
     }
     override fun onBindViewHolder(holder: PopularNewsListAdapter.PopularNewList, position: Int) {
         holder.onBind(newsList[position])
@@ -56,6 +57,9 @@ class PopularNewsListAdapter(private var newsList:MutableList<Articles>): Recycl
             itemView.setOnTouchListener { view, motionEvent ->
                 onItemTouchClick?.invoke(view,motionEvent)
                 return@setOnTouchListener false
+            }
+            itemView.setOnClickListener {
+                onItemClick?.invoke(data.url)
             }
         }
 
