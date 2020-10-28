@@ -11,6 +11,7 @@ val repositoryModule = module {
       single { SourcesNewsRepo(get()) }
       single { LoginRepo() }
       single { ProfileRepo() }
+      single { NewsDetailRepo() }
 //      single { provideSecurePreferences(androidApplication() as MyApplication)}
 }
 //fun provideSecurePreferences(app: MyApplication): SecurePreferences {

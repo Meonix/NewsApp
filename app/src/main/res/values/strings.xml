@@ -24,4 +24,6 @@
     <string name="logout">Logout</string>
     <string name="title_bar_login">In progress to login</string>
     <string name="message_bar_login">Please wait few seconds..</string>
+    <string name="comment">Comment</string>
+    <string name="send_comment">Send comment..</string>
 </resources>

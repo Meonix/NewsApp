@@ -1,5 +1,6 @@
 package com.mionix.newsapp.ui.search
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +17,7 @@ import com.mionix.newsapp.R
 import com.mionix.newsapp.utils.AppConstants
 import com.mionix.newsapp.ui.main.MainActivity
 import com.mionix.newsapp.ui.popular.DescriptionDiaLogFragment
+import com.mionix.newsapp.ui.popular.NewsDetail
 import com.mionix.newsapp.ui.popular.adapter.PopularNewsListAdapter
 import com.mionix.newsapp.ui.popular.adapter.SpinnerAdapter
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
@@ -154,6 +156,11 @@ class SearchActivity : AppCompatActivity() {
                     mActivityViewModel.isTouching.postValue(false)
                 }
             }
+        }
+        mSearchNewsListAdapter.onItemClick = {
+            val intent = Intent(this@SearchActivity, NewsDetail::class.java)
+            intent.putExtra("urlWebView",it)
+            startActivity(intent)
         }
     }
 

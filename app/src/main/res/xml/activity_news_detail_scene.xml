@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/hide">
+
+        <Constraint android:id="@id/webViewDetail" >
+            <Layout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                />
+
+        </Constraint>
+
+        <Constraint android:id="@id/cvDetail" >
+            <Layout
+                android:layout_width="@dimen/width_and_height_400dp"
+                android:layout_height="@dimen/size_50dp"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                />
+            <CustomAttribute
+                motion:attributeName="cardBackgroundColor"
+                motion:customColorValue="@color/white_blue"
+                />
+        </Constraint>
+        <Constraint android:id="@id/ivOpen" >
+            <Layout
+                android:layout_width="@dimen/size_50"
+                android:layout_height="@dimen/size_50"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintTop_toTopOf="@id/cvDetail"
+                motion:layout_constraintEnd_toEndOf="@id/cvDetail"
+                />
+            <CustomAttribute
+                motion:attributeName="translationZ"
+                motion:customDimension="@dimen/elevation_2"/>
+            <PropertySet android:visibility="visible"/>
+        </Constraint>
+        <Constraint android:id="@id/ivHide" >
+            <Layout
+                android:layout_width="@dimen/size_50"
+                android:layout_height="@dimen/size_50"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintTop_toTopOf="@id/cvDetail"
+                motion:layout_constraintEnd_toEndOf="@id/cvDetail"
+                />
+            <PropertySet android:visibility="gone"/>
+        </Constraint>
+        <Constraint android:id="@id/rlDetail">
+            <Layout
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintTop_toBottomOf="@+id/webViewDetail"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                />
+            <PropertySet android:visibility="gone"/>
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/show">
+        <Constraint android:id="@id/webViewDetail" >
+            <Layout
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintBottom_toTopOf="@id/cvDetail"
+                />
+        </Constraint>
+        <Constraint android:id="@+id/cvDetail" >
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+
+                />
+            <CustomAttribute
+                motion:attributeName="cardBackgroundColor"
+                motion:customColorValue="@color/white"
+                />
+            <CustomAttribute
+                motion:attributeName="translationZ"
+                motion:customDimension="@dimen/elevation_1"/>
+        </Constraint>
+        <Constraint android:id="@id/ivOpen" >
+            <Layout
+                android:layout_width="@dimen/size_50"
+                android:layout_height="@dimen/size_50"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintBottom_toTopOf="@id/rlDetail"
+                android:layout_marginStart="@dimen/margin_10dp"
+                android:layout_marginTop="@dimen/margin_10dp"
+                />
+            <CustomAttribute
+                motion:attributeName="translationZ"
+                motion:customDimension="@dimen/elevation_2"/>
+            <PropertySet android:visibility="gone"/>
+        </Constraint>
+        <Constraint android:id="@id/ivHide" >
+            <Layout
+                android:layout_width="@dimen/size_50"
+                android:layout_height="@dimen/size_50"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintBottom_toTopOf="@id/rlDetail"
+                android:layout_marginStart="@dimen/margin_10dp"
+                android:layout_marginTop="@dimen/width_or_height_20dp"
+                />
+            <CustomAttribute
+                motion:attributeName="translationZ"
+                motion:customDimension="@dimen/elevation_2"/>
+            <PropertySet android:visibility="visible"/>
+        </Constraint>
+        <Constraint android:id="@+id/rlDetail">
+            <Layout
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                />
+            <PropertySet android:visibility="visible"/>
+            <CustomAttribute
+                motion:attributeName="translationZ"
+                motion:customDimension="@dimen/elevation_2"/>
+        </Constraint>
+    </ConstraintSet>
+
+<!--    which transition is written first ,that'll be get the state of the constraintSetStart to display-->
+    <Transition
+        android:id="@+id/toShow"
+        motion:constraintSetEnd="@id/show"
+        motion:constraintSetStart="@id/hide"
+        motion:duration="@integer/duration_600"
+        />
+
+    <Transition
+        android:id="@+id/toHide"
+        motion:constraintSetEnd="@id/hide"
+        motion:constraintSetStart="@+id/show"
+        motion:duration="@integer/duration_600"
+
+        />
+</MotionScene>

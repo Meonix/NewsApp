@@ -10,6 +10,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.TransitionAdapter
 import androidx.lifecycle.Observer
 import com.mionix.newsapp.R
+import com.mionix.newsapp.ui.main.MainActivity
 import com.mionix.newsapp.utils.Fun
 import com.mionix.newsapp.ui.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -31,6 +32,12 @@ class LoginActivity : AppCompatActivity() {
         initHandleOnClick()
     }
 
+    override fun onBackPressed() {
+        val mainIntent = Intent(this@LoginActivity, MainActivity::class.java)
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(mainIntent)
+        finish()
+    }
     private fun initHandleOnClick() {
         toolbarLogin.ivLeft.setOnClickListener {
             onBackPressed()
