@@ -52,7 +52,6 @@ class NewsDetail : AppCompatActivity() {
         mNewsDetailViewModel.getComment(url.removeRange(0, 7).replace(".", "Dot").replace("/", "slash"))
         mNewsDetailViewModel.comment.observe(this@NewsDetail, Observer {
             mCommentAdapter.updateData(it)
-            rvDetail.smoothScrollToPosition(mCommentAdapter.itemCount -1)
         })
     }
 
@@ -76,7 +75,6 @@ class NewsDetail : AppCompatActivity() {
     }
 
     private fun initRecycleView() {
-        mCommentAdapter
         rvDetail.adapter = mCommentAdapter
         newsDetailLayoutManager = LinearLayoutManager(this@NewsDetail)
         rvDetail.layoutManager = newsDetailLayoutManager
@@ -128,7 +126,6 @@ class NewsDetail : AppCompatActivity() {
                     rvDetail.smoothScrollToPosition(mCommentAdapter.itemCount -1)
                 }
             })
-
         }
     }
 

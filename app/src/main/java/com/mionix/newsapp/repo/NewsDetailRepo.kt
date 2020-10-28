@@ -17,8 +17,6 @@ import kotlin.coroutines.suspendCoroutine
 class NewsDetailRepo {
     private var mAuth = FirebaseAuth.getInstance()
     private var rootRef = FirebaseDatabase.getInstance().reference
-    private val _listComment = MutableLiveData<MutableList<Comment>>()
-    val listComment: LiveData<MutableList<Comment>> get() = _listComment
     suspend fun getComment(urlFormatted:String):MutableList<CommentSimple>? = suspendCoroutine { data ->
         val listComment = mutableListOf<CommentSimple>()
         val commentRef = rootRef.child("comment").child(urlFormatted)
