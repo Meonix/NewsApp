@@ -13,7 +13,7 @@
         android:background="@drawable/background_fragment_dialog_description"
         android:layout_height="@dimen/width_and_height_400dp">
         <LinearLayout
-            android:background="@color/dark"
+            android:background="?colorPrimary"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent">
@@ -35,12 +35,12 @@
                 android:id="@+id/tvDescriptionFragmentDialog"
                 android:layout_width="wrap_content"
                 android:padding="@dimen/padding_10dp"
-                android:textColor="@color/white"
+                android:textColor="?colorPrimaryDark"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_15sp"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:textColor="@color/white"
+                android:textColor="?colorPrimaryDark"
                 android:padding="@dimen/padding_5dp"
                 android:id="@+id/tvContentFragmentDialog"
                 android:layout_width="wrap_content"

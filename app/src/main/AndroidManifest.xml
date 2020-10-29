@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.popular.NewsDetail"></activity>
+        <activity android:name=".ui.setting.SettingActivity"></activity>
+        <activity android:name=".ui.popular.NewsDetail" />
         <activity
             android:name=".ui.myaccount.ProfileActivity"
             android:parentActivityName=".ui.main.MainActivity"

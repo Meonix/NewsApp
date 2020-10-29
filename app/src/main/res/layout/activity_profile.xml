@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="?colorPrimary"
     android:layout_height="match_parent"
     tools:context=".ui.myaccount.ProfileActivity">
     <include
@@ -70,7 +71,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:id="@+id/btLogout"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/purpleDark"
             android:text="@string/logout"
             android:background="@drawable/border_button"
             android:layout_width="wrap_content"

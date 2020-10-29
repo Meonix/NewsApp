@@ -5,7 +5,7 @@
     android:id="@+id/clFragmentPopular"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blur"
+    android:background="?colorPrimary"
     tools:context=".ui.popular.PopularFragment">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -34,7 +34,7 @@
                     android:id="@+id/spMain"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="?colorPrimaryDark"
                     android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
                     android:spinnerMode="dropdown" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>

@@ -30,21 +30,21 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blur"
+                android:background="?colorPrimary"
                 custom:tabGravity="fill"
                 custom:tabIndicatorHeight="@dimen/size_4dp"
                 custom:tabMode="auto"
                 custom:tabPadding="@dimen/padding_10dp"
-                custom:tabSelectedTextColor="@color/colorAccent"
+                custom:tabSelectedTextColor="?colorAccent"
                 custom:tabTextAppearance="@style/TextAppearance.Text.Bold"
-                custom:tabTextColor="@color/white" />
+                custom:tabTextColor="?colorPrimaryDark" />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/mPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/tabLayout"
-                android:background="@color/blur" />
+                android:background="?colorPrimary" />
         </RelativeLayout>
 
     </LinearLayout>

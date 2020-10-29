@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.TransitionAdapter
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.mionix.newsapp.R
 import com.mionix.newsapp.ui.main.MainActivity
@@ -237,7 +238,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initToolBar() {
         toolbarLogin.ivRight.visibility = View.GONE
-        toolbarLogin.ivLeft.setImageResource(R.drawable.ic_backpress)
+        toolbarLogin.ivLeft.background = ContextCompat.getDrawable(this@LoginActivity,R.drawable.ic_backpress)
     }
 
     private fun initMotionLayoutView() {
