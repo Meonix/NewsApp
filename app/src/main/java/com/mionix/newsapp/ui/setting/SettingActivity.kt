@@ -46,7 +46,7 @@ class SettingActivity : AppCompatActivity() {
             if(b) {
                 sharedPreferences.edit().putString(themeKey, "dark").apply()
             }
-            else if(!b) {
+            else {
                 sharedPreferences.edit().putString(themeKey, "white").apply()
             }
             val intent = Intent(this@SettingActivity,MainActivity::class.java)
