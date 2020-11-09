@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -273,7 +274,7 @@ class SearchActivity : AppCompatActivity() {
     private fun initToolBar() {
         searchToolbar.etToolbar.visibility = View.VISIBLE
         searchToolbar.ivRight.visibility = View.GONE
-        searchToolbar.ivLeft.setImageResource(R.drawable.ic_backpress)
+        searchToolbar.ivLeft.background = ContextCompat.getDrawable(this@SearchActivity,R.drawable.ic_backpress)
     }
 
     private fun initActionClick() {

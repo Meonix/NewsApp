@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.mionix.newsapp.R
@@ -103,7 +104,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun initToolBar() {
         toolbarProfile.ivRight.visibility = View.GONE
-        toolbarProfile.ivLeft.setImageResource(R.drawable.ic_backpress)
+        toolbarProfile.ivLeft.background = ContextCompat.getDrawable(this@ProfileActivity,R.drawable.ic_backpress)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

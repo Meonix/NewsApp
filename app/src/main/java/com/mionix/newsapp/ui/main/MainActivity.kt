@@ -1,7 +1,9 @@
 package com.mionix.newsapp.ui.main
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -14,6 +16,7 @@ import com.mionix.newsapp.ui.myaccount.LoginActivity
 import com.mionix.newsapp.ui.myaccount.ProfileActivity
 import com.mionix.newsapp.ui.main.adapter.MainHomeViewPagerAdapter
 import com.mionix.newsapp.ui.search.SearchActivity
+import com.mionix.newsapp.ui.setting.SettingActivity
 import com.mionix.newsapp.ui.viewmodel.ActivityViewModel
 import com.mionix.newsapp.ui.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,12 +25,22 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity : AppCompatActivity() {
+    lateinit var sharedPreferences: SharedPreferences
     private var fragmentNames = mutableListOf<String>()
     private val mActivityViewModel: ActivityViewModel by viewModel()
     private val mLoginViewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPreferences = getSharedPreferences(
+            "ThemePref",
+            Context.MODE_PRIVATE
+        )
+        when (sharedPreferences.getString(SettingActivity.themeKey, null)) {
+            "dark" ->  theme.applyStyle(R.style.OverlayThemeDark, true)
+            "white" ->  theme.applyStyle(R.style.AppTheme, true)
+
+        }
         setContentView(R.layout.activity_main)
         initView()
         initActionOnClick()
@@ -137,6 +150,8 @@ class MainActivity : AppCompatActivity() {
         nv.setNavigationItemSelectedListener {
             when (it.title) {
                 getString(R.string.settings) -> {
+                    val intent = Intent(this@MainActivity,SettingActivity::class.java)
+                    startActivity(intent)
                 }
                 getString(R.string.my_account) -> {
                     mLoginViewModel.checkLogged()

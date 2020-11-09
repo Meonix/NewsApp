@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_black"
+    android:background="?colorPrimary"
     android:orientation="vertical"
     tools:context=".ui.search.SearchActivity">
 
@@ -36,14 +36,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
-                app:contentScrim="@color/blur"
+                app:contentScrim="?colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways">
 
                 <Spinner
                     android:id="@+id/spSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="?colorPrimaryDark"
                     android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
                     android:spinnerMode="dropdown" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>

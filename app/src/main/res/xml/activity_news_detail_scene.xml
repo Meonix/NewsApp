@@ -26,7 +26,7 @@
                 />
             <CustomAttribute
                 motion:attributeName="cardBackgroundColor"
-                motion:customColorValue="@color/white_blue"
+                motion:customColorValue="@color/colorAccent"
                 />
         </Constraint>
         <Constraint android:id="@id/ivOpen" >
@@ -88,7 +88,7 @@
                 />
             <CustomAttribute
                 motion:attributeName="cardBackgroundColor"
-                motion:customColorValue="@color/white"
+                motion:customColorValue="?colorPrimaryDark"
                 />
             <CustomAttribute
                 motion:attributeName="translationZ"

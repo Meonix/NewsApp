@@ -15,7 +15,7 @@
                 motion:customDimension="25dp" />
             <CustomAttribute
                 motion:attributeName="cardBackgroundColor"
-                motion:customColorValue="#0EF3BE" />
+                motion:customColorValue="?colorPrimaryDark" />
         </Constraint>
         <Constraint android:id="@id/btRegister">
             <Layout
@@ -30,7 +30,7 @@
                 motion:customDimension="25dp" />
             <CustomAttribute
                 motion:attributeName="cardBackgroundColor"
-                motion:customColorValue="#0EF3BE" />
+                motion:customColorValue="?colorPrimaryDark" />
         </Constraint>
         <Constraint android:id="@id/etEmail">
             <Layout

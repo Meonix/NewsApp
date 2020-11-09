@@ -30,6 +30,7 @@
             app:cardElevation="@dimen/elevation_1" />
 
         <TextView
+            android:textColor="?colorPrimary"
             android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +45,7 @@
             android:background="@drawable/border_button"
             android:foreground="?attr/selectableItemBackground"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/purpleDark" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btRegister"
@@ -54,6 +55,7 @@
             app:cardElevation="@dimen/elevation_1" />
 
         <TextView
+            android:textColor="?colorPrimary"
             android:id="@+id/tvRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

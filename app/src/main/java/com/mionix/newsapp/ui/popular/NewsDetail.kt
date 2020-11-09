@@ -12,6 +12,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.TransitionAdapter
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mionix.newsapp.R
@@ -25,6 +26,7 @@ import com.mionix.newsapp.ui.viewmodel.NewsDetailViewModel
 import com.mionix.newsapp.ui.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_news_detail.*
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -100,7 +102,7 @@ class NewsDetail : AppCompatActivity() {
 
     private fun initToolBar() {
         detailToolbar.ivRight.visibility = View.GONE
-        detailToolbar.ivLeft.setImageResource(R.drawable.ic_backpress)
+        detailToolbar.ivLeft.background = ContextCompat.getDrawable(this@NewsDetail,R.drawable.ic_backpress)
     }
     @SuppressLint("ClickableViewAccessibility")
     private fun initActionClick() {
