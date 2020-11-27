@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.item_sources_news.view.*
 
 class SourcesListAdapter (private var newsList:MutableList<AllSource>): RecyclerView.Adapter<SourcesListAdapter.SourcesNewsList>() {
 
-    var onItemClick: ((view: View, motionEvent: MotionEvent) -> Unit)? = null
+    var onItemClick: ((data:AllSource) -> Unit)? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -47,10 +47,9 @@ class SourcesListAdapter (private var newsList:MutableList<AllSource>): Recycler
         fun onBind(data : AllSource){
             itemView.tvNameSources.text = data.name
             itemView.tvDescriptionSources.text = data.description
-//            itemView.setOnTouchListener { view, motionEvent ->
-//                onItemClick?.invoke(view,motionEvent)
-//                return@setOnTouchListener false
-//            }
+            itemView.setOnClickListener {
+                onItemClick?.invoke(data)
+            }
         }
     }
 }

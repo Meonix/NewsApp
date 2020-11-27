@@ -103,6 +103,9 @@ class NewsDetail : AppCompatActivity() {
     private fun initToolBar() {
         detailToolbar.ivRight.visibility = View.GONE
         detailToolbar.ivLeft.background = ContextCompat.getDrawable(this@NewsDetail,R.drawable.ic_backpress)
+        detailToolbar.ivLeft.setOnClickListener {
+            onBackPressed()
+        }
     }
     @SuppressLint("ClickableViewAccessibility")
     private fun initActionClick() {
